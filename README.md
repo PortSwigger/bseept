@@ -212,7 +212,7 @@ The following are example uses cases.
 ## API Examples
 The following will use the Python client library to query the configured sites and print to stdout
 
-```
+```python
 import bseeptsites
 
 
