@@ -60,6 +60,10 @@ def addscanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configu
         {
             schedule_item{
                 id
+                site {
+                    id
+                    name
+                }
                 schedule {
                     initial_run_time
                     rrule
@@ -90,13 +94,16 @@ def addscanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configu
 def updatescanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configuration_ids):
  
     query = '''
-    mutation UpdateScheduleItems  ($id: ID!, $initial_run_time: Timestamp, $schedule: String, $scan_configuration_ids: [ID!]) {
+    mutation UpdateScheduleItems  ($schedule_id: ID!, $site_id: ID, $initial_run_time: Timestamp, $initial_run_time_is_set: Boolean, $schedule: String, $rrule_is_set: Boolean, $scan_configuration_ids: [ID!]) {
         create_schedule_item (
             input: {
-                site_id: $id
+                id: $schedule_id
+                site_id: $site_id
                 schedule: {
                     initial_run_time: $initial_run_time
+                    initial_run_time_is_set: $initial_run_time_is_set
                     rrule: $schedule
+                    rrule_is_set: $rrule_is_set
                 }
                 scan_configuration_ids: $scan_configuration_ids
             } 
@@ -105,6 +112,10 @@ def updatescanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_conf
         {
             schedule_item{
                 id
+                site {
+                    id 
+                    name
+                }
                 schedule {
                     initial_run_time
                     rrule
@@ -113,6 +124,8 @@ def updatescanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_conf
                     id
                     name
                 }
+                has_run_more_than_once
+                scheduled_run_time
             }
         }
     }
