@@ -116,7 +116,7 @@ with 🧡 from PortSwigger
  py bseept.py createsite --sitename MyTestSite --scanconfigurationid ba4f8ce0-af9a-4450-ad35-78f083375088 --siteurls https://ginandjuice.shop
  ```
  
- ### Get the schedules and parse via jq
+ ### Get the scheduled scans and parse via jq
  ```
  py bseept.py --getschedule | c:\data\utils\jq | more
 {
