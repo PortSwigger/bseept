@@ -178,7 +178,7 @@ def main():
     # folders
     parser_createfolder = subparsers.add_parser('createfolder', help='Create a folder')
     parser_renamefolder = subparsers.add_parser('renamefolder', help='Rename a folder')
-    parser_movefolder = subparsers.add_parser('renamefolder', help='Move a folder')
+    parser_movefolder = subparsers.add_parser('movefolder', help='Move a folder')
     parser_deletefolder = subparsers.add_parser('deletefolder', help='Delete a folder')
 
     # credentials

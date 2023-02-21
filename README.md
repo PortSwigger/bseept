@@ -1,32 +1,73 @@
 # BSEEPT
 Burp Suite Enterprise Edition Power Tools
 
+A command line utility and Python client library for Burp Suite Enterprise Edition's GraphQL API allowing you to query and configure.
+* https://portswigger.net/burp/documentation/enterprise/api-documentation/graphql-api
+* https://portswigger.net/burp/extensibility/enterprise/graphql-api/
+
+All output returned is in JSON format which can be parsed and pretified by piping through `jq` and similar
+
 ## Features
+
+This tool is currently work in progress. The following lists track the implemented versus to do features.
 
 ### Implemented
 
-- [x] Get sites via --getsites
-- [x] Get site tree via --getsitetree
-- [x] Get scans via --getscans
-- [x] Get scan configurations via --getscanconfigs
-- [x] Get scan issues via --getscanissues
-- [x] Get scan report in HTML via --getscanreport
-- [x] Get scan report in XML via --getscanreportxml
-- [x] Get agents via --getagent
-- [x] Get agentpools via --getagentpools
-- [x] Get schedule via --getschedule
+- [x] Get sites via `--getsites`
+- [x] Get site tree via `--getsitetree`
+- [x] Get scans via `--getscans`
+- [x] Get scan configurations via `--getscanconfigs`
+- [x] Get scan issues via `--getscanissues`
+- [x] Get scan report in HTML via `--getscanreport`
+- [x] Get scan report in XML via `--getscanreportxml`
+- [x] Get agents via `--getagent`
+- [x] Get agentpools via` --getagentpools`
+- [x] Get schedule via `--getschedule`
 - [x] Get extensions via `--getextensions`
 - [x] Create site via `createsite`
 - [x] Delete site via `deletesite`
+- [x] Rename site via `renamesite`
+- [x] Move site via `movesite`
+- [x] Add scan via `addscan`
 
-
-### To do
+### To Do
+- [ ] Update scan config via `updatescanconfig`
+- [ ] Update site extensions via `updatesiteextensions`
+- [ ] Create site login credentials via`createsitelogincredentials`
+- [ ] Update site login credentials via `updatesitelogincredentials`
+- [ ] Delete site login credentials via `deletesitelogincredentials`
+- [ ] Update scan schedule via `updatescanschedule`
+- [ ] Delete scan schedule via `deletescanschedule`
+- [ ] Create scan config via `createscanconfig`
+- [ ] Update scan config via `updatescanconfig`
+- [ ] Delete scan config via `deletescanconfig`
+- [ ] Upload BApp via `uploadbapp`
+- [ ] Get BApp details via `getbappdetails`
+- [ ] Upload extension via `uploadextension`
+- [ ] Update extension name via `updateextensionname`
+- [ ] Update extension description via `updateextensiondescription`
+- [ ] Update extension JAR via `updateextensionjar`
+- [ ] Delete extension via `deleteextension`
+- [ ] Authorize agent via `authorizeagent`
+- [ ] Deauthorize agent via `deauthorizeagent`
+- [ ] Enable disabled agent via `enabledisableagent`
+- [ ] Rename agent via `renameagent`
+- [ ] Update agent maximum concurrent scans via `updateagentmaxconcurrentscans`
+- [ ] Create agent pool via `createagentpool`
+- [ ] Update agent pool via `updateagentpool`
+- [ ] Move agent pool via `moveagentpool`
+- [ ] Delete agent pool via `deleteagentpool`
+- [ ] Assign site to agent pool via `assignsitetogentpool`
+- [ ] Create folder via `createfolder`
+- [ ] Rename folder via `renamefolder`
+- [ ] Move folder via `movefolder`
+- [ ] Delete folder via `deletefolder`
 
 ## Authentication Configuration
 
-You can configure authentication to work in one of two ways. Either via environment variables or via the command line.
+You can configure authentication with the API key to work in one of two ways. Either via environment variables (i.e. setting the URL and/or API via specific variables) or by supplying the command line.
 
-via environment variables 
+via environment variables example on Windows:
 ```
 set BSEEURL=https://my.bsee.server/
 set BSEEAPIKEY=MYAPIKEY
@@ -39,6 +80,9 @@ py bseept.py --url https://my.bsee.server/ --apikey MYAPIKEY --getsites
 
 
 ## Help
+
+The following is the help output from the tool
+
 ```
 # py bseept.py --help
 usage: bseept [-h] [-u URL] [--apikey APIKEY] [--getsites] [--getfolders] [--getsitetree] [--getscans] [--getscanconfigs] [--getscanissues GETSCANISSUES] [--getscanreport GETSCANREPORT]
@@ -132,6 +176,8 @@ with 🧡 from PortSwigger
 
 ## Examples
 
+The following are example uses cases.
+
 ### Creating a site
 ```
  py bseept.py createsite --sitename MyTestSite --scanconfigurationid ba4f8ce0-af9a-4450-ad35-78f083375088 --siteurls https://ginandjuice.shop
@@ -160,6 +206,17 @@ with 🧡 from PortSwigger
     ]
   }
 }
+```
+
+
+## API Examples
+The following will use the Python client library to query the configured sites and print to stdout
+
+```
+import bseeptsites
+
+
+print(bseeptsites.getsites("https://my.bsee.server/","MYAPIKEY")
 ```
 
 
