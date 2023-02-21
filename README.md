@@ -115,3 +115,27 @@ with 🧡 from PortSwigger
 ```
  py bseept.py createsite --sitename MyTestSite --scanconfigurationid ba4f8ce0-af9a-4450-ad35-78f083375088 --siteurls https://ginandjuice.shop
  ```
+ 
+ ### Get the schedules and parse via jq
+ ```
+ py bseept.py --getschedule | c:\data\utils\jq | more
+{
+  "data": {
+    "schedule_items": [
+      {
+        "id": "1",
+        "site": {
+          "id": "1",
+          "name": "Gin & Juice"
+        },
+        "schedule": {
+          "initial_run_time": "2022-09-02T13:51:14.550Z",
+          "rrule": "FREQ=DAILY;INTERVAL=2"
+        },
+        "has_run_more_than_once": true,
+        "scheduled_run_time": "2023-02-21T13:51:14.000Z"
+      }
+    ]
+  }
+}
+```
