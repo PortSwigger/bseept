@@ -11,10 +11,8 @@ from python_graphql_client import GraphqlClient
 import json
 
 def getevents(APIURL,APIKEY):
-    headers = { "Authorization": APIKEY }
-    client = GraphqlClient(endpoint=APIURL+"/graphql/v1", verify=False, headers=headers)
-    result = client.execute('''
-    query GetEventLog {
+    
+    query = ''' GetEventLog {
         scaneventlog {
             entires{
                 type
@@ -27,6 +25,9 @@ def getevents(APIURL,APIKEY):
             }
         }
     }
-    ''')
+    '''
 
+
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
     print(json.dumps(result))
