@@ -1,6 +1,27 @@
 # BSEEPT
 Burp Suite Enterprise Edition Power Tools
 
+## Features
+
+### Implemented
+
+- [x] Get sites via --getsites
+- [x] Get site tree via --getsitetree
+- [x] Get scans via --getscans
+- [x] Get scan configurations via --getscanconfigs
+- [x] Get scan issues via --getscanissues
+- [x] Get scan report in HTML via --getscanreport
+- [x] Get scan report in XML via --getscanreportxml
+- [x] Get agents via --getagent
+- [x] Get agentpools via --getagentpools
+- [x] Get schedule via --getschedule
+- [x] Get extensions via `--getextensions`
+- [x] Create site via `createsite`
+- [x] Delete site via `deletesite`
+
+
+### To do
+
 ## Authentication Configuration
 
 You can configure authentication to work in one of two ways. Either via environment variables or via the command line.
@@ -140,3 +161,5 @@ with 🧡 from PortSwigger
   }
 }
 ```
+
+
