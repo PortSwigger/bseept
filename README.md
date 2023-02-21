@@ -183,7 +183,14 @@ The following are example uses cases.
  {"data": {"create_site": {"site": {"id": "46", "parent_id": "0", "scope": {"included_urls": ["https://ginandjuice.shop"], "protocol_options": "USE_SPECIFIED_PROTOCOLS"}, "application_logins": {"login_credentials": [], "recorded_logins": []}, "scan_configurations": [{"id": "ba4f8ce0-af9a-4450-ad35-78f083375088"}]}}}}
  ```
  
- ### Get the scheduled scans and parse via jq
+ ### Get the extensions and parse via jq to extract just the names
+ ```
+ > py bseept.py --getextensions | c:\data\utils\jq ".[].extensions[] | .name" | more
+"Backslash Powered Scanner"
+"test-custom-extension.jar"
+ ```
+ 
+ ### Get the scheduled scans and parse via jq to prettyfi
  ```
  > py bseept.py --getschedule | c:\data\utils\jq | more
 {
