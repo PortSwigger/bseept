@@ -32,7 +32,6 @@
     <Compile Include="bseeptfolders.py" />
     <Compile Include="bseeptgraphql.py" />
     <Compile Include="bseeptscanconfigs.py" />
-    <Compile Include="bseeptscanconfigurations.py" />
     <Compile Include="bseeptscanschedules.py" />
     <Compile Include="bseeptsites.py" />
     <Compile Include="bseeptscans.py" />
