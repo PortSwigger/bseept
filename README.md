@@ -27,7 +27,7 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Delete site via `deletesite`
 - [x] Rename site via `renamesite`
 - [x] Move site via `movesite`
-- [x] Add scan via `addscan`
+- [x] Add scan via `addscanschedule`
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
