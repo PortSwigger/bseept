@@ -110,3 +110,8 @@ with 🧡 from PortSwigger
 
 
 ## Examples
+
+### Creating a site
+```
+ py bseept.py createsite --sitename MyTestSite --scanconfigurationid ba4f8ce0-af9a-4450-ad35-78f083375088 --siteurls https://ginandjuice.shop
+ ```
