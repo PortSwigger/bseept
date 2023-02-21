@@ -132,7 +132,8 @@ def updatescanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_conf
     '''
 
     variables = { 
-            "id": siteid, 
+            "schedule_id": siteid, 
+            "site_id": siteid,
             "initial_run_time": initialruntime,
             "schedule": schedule,
             "scan_configuration_ids": scan_configuration_ids
