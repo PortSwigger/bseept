@@ -183,7 +183,40 @@ The following are example uses cases.
  {"data": {"create_site": {"site": {"id": "46", "parent_id": "0", "scope": {"included_urls": ["https://ginandjuice.shop"], "protocol_options": "USE_SPECIFIED_PROTOCOLS"}, "application_logins": {"login_credentials": [], "recorded_logins": []}, "scan_configurations": [{"id": "ba4f8ce0-af9a-4450-ad35-78f083375088"}]}}}}
  ```
  
- ### Get the extensions and parse via jq to extract just the names
+ ### Get the extensions and parse via jq to prettyfi
+ ```
+ > py bseept.py --getextensions | c:\data\utils\jq
+ {
+  "data": {
+    "extensions": [
+      {
+        "id": "526b9b32-9a0c-4a7a-9d73-60cfb53ad408",
+        "uploaded_filename": "9cff8c55432a45808432e26dbb2b41d8 (1).bapp",
+        "name": "Backslash Powered Scanner",
+        "description": "Finds unknown classes of injection vulnerabilities.",
+        "uploaded_date": "2022-11-02T13:48:53.774Z",
+        "uploaded_by": "administrator",
+        "bapp_details": {
+          "bapp_uuid": "9cff8c55432a45808432e26dbb2b41d8",
+          "author": "James 'albinowax' Kettle, PortSwigger Web Security",
+          "version": "1.21"
+        }
+      },
+      {
+        "id": "034657cc-0f31-44b0-8d0a-b9a57627818e",
+        "uploaded_filename": "test-custom-extension.jar",
+        "name": "test-custom-extension.jar",
+        "description": "Adds an issue to a scan",
+        "uploaded_date": "2023-02-08T15:41:25.471Z",
+        "uploaded_by": "administrator",
+        "bapp_details": null
+      }
+    ]
+  }
+}
+ ```
+ 
+ ## Get the extensions and parse via jq to extract just the names
  ```
  > py bseept.py --getextensions | c:\data\utils\jq ".[].extensions[] | .name" | more
 "Backslash Powered Scanner"
