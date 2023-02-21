@@ -38,3 +38,45 @@ def getscheduleitems(APIURL,APIKEY,sortby="start", sortorder="asc"):
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
     print(json.dumps(result))
+
+def addscanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configuration_ids):
+ 
+    query = '''
+    mutation CreateScheduleItems  ($id: ID!, $initial_run_time: Timestamp, $schedule: String, $scan_configuration_ids: [ID!]) {
+        create_schedule_item (
+            input: {
+                site_id: $id
+                schedule: {
+                    initial_run_time: $initial_run_time
+                    rrule: $schedule
+                }
+                scan_configuration_ids: $scan_configuration_ids
+            } 
+        ) 
+
+        {
+            schedule_item{
+                id
+                schedule {
+                    initial_run_time
+                    rrule
+                }
+                scan_configurations {
+                    id
+                    name
+                }
+            }
+        }
+    }
+    '''
+
+    variables = { 
+            "id": siteid, 
+            "initial_run_time": initialruntime,
+            "schedule": schedule,
+            "scan_configuration_ids": scan_configuration_ids
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+    print(json.dumps(result))
+

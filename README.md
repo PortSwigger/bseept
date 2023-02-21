@@ -183,6 +183,31 @@ The following are example uses cases.
  {"data": {"create_site": {"site": {"id": "46", "parent_id": "0", "scope": {"included_urls": ["https://ginandjuice.shop"], "protocol_options": "USE_SPECIFIED_PROTOCOLS"}, "application_logins": {"login_credentials": [], "recorded_logins": []}, "scan_configurations": [{"id": "ba4f8ce0-af9a-4450-ad35-78f083375088"}]}}}}
  ```
  
+ ### Creating a scan from a site and parse the response via jq to prettyfi
+ ```
+> py bseept.py addscanschedule --siteid 1 --initialruntime 2024-08-19T11:07:25.664Z --schedule FREQ=DAILY;INTERVAL=2 --scanconfigurationids ba4f8ce0-af9a-4450-ad35-78f083375088 | c:\data\utils\jq
+{
+  "data": {
+    "create_schedule_item": {
+      "schedule_item": {
+        "id": "27",
+        "schedule": {
+          "initial_run_time": "2024-08-19T11:07:25.664Z",
+          "rrule": "FREQ=DAILY;INTERVAL=2"
+        },
+        "scan_configurations": [
+          {
+            "id": "ba4f8ce0-af9a-4450-ad35-78f083375088",
+            "name": "Audit coverage - maximum"
+          }
+        ]
+      }
+    }
+  }
+}
+
+ ```
+ 
  ### Get the extensions and parse via jq to prettyfi
  ```
  > py bseept.py --getextensions | c:\data\utils\jq
