@@ -1,7 +1,7 @@
 # BSEEPT
 Burp Suite Enterprise Edition Power Tools
 
-A command line utility and Python client library for Burp Suite Enterprise Edition's GraphQL API allowing you to query and configure.
+A command line utility and Python client library for Burp Suite Enterprise Edition's (https://portswigger.net/burp/enterprise) GraphQL API allowing you to query and configure.
 * https://portswigger.net/burp/documentation/enterprise/api-documentation/graphql-api
 * https://portswigger.net/burp/extensibility/enterprise/graphql-api/
 
