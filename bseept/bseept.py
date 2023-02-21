@@ -144,7 +144,9 @@ def main():
     parser_addscan.add_argument('--scanconfigurationids', help='scan configuration IDs to use', required=True)
 
     parser_updatescanschedule = subparsers.add_parser('updatescanschedule', help='Update a scan schedule')
+
     parser_deletescansschedule = subparsers.add_parser('deletescanschedule', help='Delete a scan')
+    parser_deletescansschedule.add_argument('--scanid', help='scanid ID returned from addscanschedule or --getschedules', required=True)
 
     # scan configurations
     parser_createscanconfig = subparsers.add_parser('createscanconfig', help='Create a scan configuration')
@@ -282,6 +284,9 @@ def main():
     if(args.command =="addscanschedule"):
         bseeptscanschedules.addscanschedule(apiurl, apikey,args.siteid, args.initialruntime, args.schedule, args.scanconfigurationids)
         return
+
+    if(args.command == "deletescanschedule"):
+        bseeptscanschedules.deletescanschedule(apiurl, apikey, args.scanid)
 
 # Entry point
 if __name__ == '__main__':

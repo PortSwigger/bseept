@@ -8,7 +8,7 @@ import bseeptgraphql
 import json
 
 #
-# Get the agent pools configured in the system
+# Get the scan schedules configured in the system
 #
 def getscheduleitems(APIURL,APIKEY,sortby="start", sortorder="asc"):
  
@@ -39,6 +39,9 @@ def getscheduleitems(APIURL,APIKEY,sortby="start", sortorder="asc"):
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
     print(json.dumps(result))
 
+#
+# Add a scan schedule
+#
 def addscanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configuration_ids):
  
     query = '''
@@ -79,4 +82,77 @@ def addscanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configu
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
     print(json.dumps(result))
+
+
+#
+# Update a scan schedule
+#
+def updatescanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configuration_ids):
+ 
+    query = '''
+    mutation UpdateScheduleItems  ($id: ID!, $initial_run_time: Timestamp, $schedule: String, $scan_configuration_ids: [ID!]) {
+        create_schedule_item (
+            input: {
+                site_id: $id
+                schedule: {
+                    initial_run_time: $initial_run_time
+                    rrule: $schedule
+                }
+                scan_configuration_ids: $scan_configuration_ids
+            } 
+        ) 
+
+        {
+            schedule_item{
+                id
+                schedule {
+                    initial_run_time
+                    rrule
+                }
+                scan_configurations {
+                    id
+                    name
+                }
+            }
+        }
+    }
+    '''
+
+    variables = { 
+            "id": siteid, 
+            "initial_run_time": initialruntime,
+            "schedule": schedule,
+            "scan_configuration_ids": scan_configuration_ids
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+    print(json.dumps(result))
+
+#
+# Delete a scan schedule
+#
+def deletescanschedule(APIURL,APIKEY,scanid):
+ 
+    query = '''
+    mutation DeleteScheduleItem  ($id: ID!) {
+        delete_schedule_item (
+            input: {
+               id: $id
+            } 
+        ) 
+
+        {
+            id
+        }
+    }
+    '''
+
+    variables = { 
+            "id": scanid
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+    print(json.dumps(result))
+
+
 

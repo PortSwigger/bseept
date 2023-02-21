@@ -28,6 +28,7 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Rename site via `renamesite`
 - [x] Move site via `movesite`
 - [x] Add scan via `addscanschedule`
+- [x] Delete scan schedule via `deletescanschedule`
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
@@ -36,7 +37,6 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Update site login credentials via `updatesitelogincredentials`
 - [ ] Delete site login credentials via `deletesitelogincredentials`
 - [ ] Update scan schedule via `updatescanschedule`
-- [ ] Delete scan schedule via `deletescanschedule`
 - [ ] Create scan config via `createscanconfig`
 - [ ] Update scan config via `updatescanconfig`
 - [ ] Delete scan config via `deletescanconfig`
@@ -272,6 +272,11 @@ The following are example uses cases.
 }
 ```
 
+### Delete a scheduled scan
+```
+> py bseept.py deletescanschedule --scanid 25
+{"data": {"delete_schedule_item": {"id": "25"}}}
+```
 
 ## API Examples
 The following will use the Python client library to query the configured sites and print to stdout
