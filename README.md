@@ -36,6 +36,7 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Delete folder via `deletefolder`
 - [x] Rename folder via `renamefolder`
 - [x] Move folder via `movefolder`
+- [x] Rename agent via `renameagent`
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
@@ -55,8 +56,7 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Delete extension via `deleteextension`
 - [ ] Authorize agent via `authorizeagent`
 - [ ] Deauthorize agent via `deauthorizeagent`
-- [ ] Enable disabled agent via `enabledisableagent`
-- [ ] Rename agent via `renameagent`
+- [ ] Enable or disabled agent via `enabledisableagent`
 - [ ] Update agent maximum concurrent scans via `updateagentmaxconcurrentscans`
 - [ ] Create agent pool via `createagentpool`
 - [ ] Update agent pool via `updateagentpool`

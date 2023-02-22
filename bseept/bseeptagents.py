@@ -65,3 +65,37 @@ def getagents(APIURL,APIKEY,doprint=True, output=False):
         print(json.dumps(result))
     if(output is True):
         return result
+
+
+def renameagent (APIURL,APIKEY,name,id, doprint=True, output=False):
+    query = '''
+    
+     mutation RenameAgent($name: String!, $id: ID!) {
+        rename_agent (
+            input: {
+                name: $name
+                id: $id
+            }
+
+        )
+        
+        {
+            agent {
+                id
+                name
+            }
+        }
+    }
+    '''
+
+    variables = { 
+            "name": name, 
+            "id": id
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
