@@ -103,6 +103,9 @@ def renameagent (APIURL,APIKEY,name,id, doprint=True, output=False):
         return result
 
 
+#
+#
+#
 def enabledisableagent (APIURL,APIKEY,enabled,id, doprint=True, output=False):
     query = '''
     
@@ -138,6 +141,9 @@ def enabledisableagent (APIURL,APIKEY,enabled,id, doprint=True, output=False):
         return result
 
 
+#
+#
+#
 def concurrentscansforagent (APIURL,APIKEY,scans,id, doprint=True, output=False):
 
     query = '''
@@ -174,6 +180,10 @@ def concurrentscansforagent (APIURL,APIKEY,scans,id, doprint=True, output=False)
     if(output is True):
         return result
 
+
+#
+#
+#
 def createpool (APIURL,APIKEY,name,desc, doprint=True, output=False):
 
     query = '''
@@ -200,6 +210,79 @@ def createpool (APIURL,APIKEY,name,desc, doprint=True, output=False):
     variables = { 
             "name": name, 
             "desc": desc
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
+
+
+#
+#
+#
+def updatepool (APIURL,APIKEY,id,name,desc,doprint=True, output=False):
+
+    query = '''
+    
+     mutation UpdateAgentPool($id: ID!, $name: String!, $desc: String) {
+        update_agent_pool (
+            input: {
+                agent_pool_id: $id
+                name: $name
+                description: $desc
+            }
+
+        )
+        
+        {
+            agent_pool {
+                id
+                name
+                description
+            }
+        }
+    }
+    '''
+
+    variables = { 
+            "id": id,
+            "name": name, 
+            "desc": desc
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
+
+#
+#
+#
+def deletepool (APIURL,APIKEY,id, doprint=True, output=False):
+
+    query = '''
+    
+     mutation DeleteAgentPool($id: ID!) {
+        delete_agent_pool (
+            input: {
+                id: $id
+            }
+
+        )
+        
+        {
+            id
+        }
+    }
+    '''
+
+    variables = { 
+            "id": id
     } 
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )

@@ -194,8 +194,15 @@ def main():
     parser_createagentpool.add_argument('--description', help='description of the agent pool', required=True)
 
     parser_updateagentpool = subparsers.add_parser('updateagentpool', help='Update an agent pool')
+    parser_updateagentpool.add_argument('--poolid', help='ID of the agent pool', required=True)
+    parser_updateagentpool.add_argument('--name', help='name of the agent pool', required=True)
+    parser_updateagentpool.add_argument('--description', help='description of the agent pool', required=True)
+
     parser_moveagentpool = subparsers.add_parser('moveagentpool', help='Move an agent pool')
+
     parser_deleteagentpool = subparsers.add_parser('deleteagentpool', help='Delete an agent pool')
+    parser_deleteagentpool.add_argument('--poolid', help='ID of the agent pool', required=True)
+
     parser_assignsitetogentpool = subparsers.add_parser('assignsitetogentpool', help='Assign sites to an agent pool')
 
     # folders
@@ -356,6 +363,12 @@ def main():
 
     if(args.command == "createagentpool"):
         bseeptagents.createpool(apiurl,apikey, args.name, args.description)
+
+    if(args.command == "updateagentpool"):
+        bseeptagents.updatepool(apiurl,apikey,args.poolid, args.name, args.description)
+
+    if(args.command == "deleteagentpool"):
+        bseeptagents.deletepool(apiurl,apikey, args.poolid)
 
 # Entry point
 if __name__ == '__main__':

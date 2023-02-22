@@ -41,6 +41,8 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Disable agent via `disableagent`
 - [x] Update agent maximum concurrent scans via `updateagentmaxconcurrentscans`
 - [x] Create agent pool via `createagentpool`
+- [x] Update agent pool via `updateagentpool`
+- [x] Delete agent pool via `deleteagentpool`
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
@@ -60,9 +62,7 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Delete extension via `deleteextension`
 - [ ] Authorize agent via `authorizeagent`
 - [ ] Deauthorize agent via `deauthorizeagent`
-- [ ] Update agent pool via `updateagentpool`
 - [ ] Move agent pool via `moveagentpool`
-- [ ] Delete agent pool via `deleteagentpool`
 - [ ] Assign site to agent pool via `assignsitetogentpool`
 
 ## Authentication Configuration
