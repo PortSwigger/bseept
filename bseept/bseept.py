@@ -192,6 +192,9 @@ def main():
     parser_deletefolder.add_argument('--id', help='folder ID returned from createfolder or --getfolders', required=True)
 
     parser_renamefolder = subparsers.add_parser('renamefolder', help='Rename a folder')
+    parser_renamefolder.add_argument('--folderid', help='folder ID returned from createfolder or --getfolders', required=True)
+    parser_renamefolder.add_argument('--name', help='new name of the folder', required=True)
+
     parser_movefolder = subparsers.add_parser('movefolder', help='Move a folder')
 
     # credentials
@@ -310,6 +313,10 @@ def main():
 
     if(args.command == "deletefolder"):
         bseeptfolders.deletefolder(apiurl, apikey, args.id)
+
+    if(args.command == "renamefolder"):
+        bseeptfolders.renamefolder(apiurl, apikey, args.name, args.folderid)
+
 
 # Entry point
 if __name__ == '__main__':

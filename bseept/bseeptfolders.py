@@ -67,14 +67,14 @@ def createfolder(APIURL,APIKEY,name,parentid,doprint=True, output=False):
         return result
 
 
-def renamefolder(APIURL,APIKEY,name,parentid,doprint=True, output=False):
+def renamefolder(APIURL,APIKEY,name,id, doprint=True, output=False):
     query = '''
     
-     mutation CreateFolder($name: String!, $parent_id: ID!) {
-        create_folder (
+     mutation RenameFolder($name: String!, $id: ID!) {
+        rename_folder (
             input: {
                 name: $name
-                parent_id: $parent_id
+                id: $id
             }
 
         )
@@ -91,7 +91,7 @@ def renamefolder(APIURL,APIKEY,name,parentid,doprint=True, output=False):
 
     variables = { 
             "name": name, 
-            "parent_id": parentid
+            "id": id
     } 
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
