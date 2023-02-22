@@ -8,6 +8,7 @@
 # Library documentation
 # https://github.com/prodigyeducation/python-graphql-client
 
+from this import s
 import bseeptgraphql
 import json
 
@@ -32,10 +33,20 @@ def getsitetreefolders(APIURL,APIKEY,doprint=True, output=False):
     if(output is True):
         return result
 
-def createfolder(APIURL,APIKEY,doprint=True, output=False):
-    query = '''CreateFolder {
-        site_tree {
-            folders {
+def createfolder(APIURL,APIKEY,name,parentid,doprint=True, output=False):
+    query = '''
+    
+     mutation CreateFolder($name: String!, $parent_id: ID!) {
+        create_folder (
+            input: {
+                name: $name
+                parent_id: $parent_id
+            }
+
+        )
+        
+        {
+            folder {
                 id
                 name
                 parent_id
@@ -45,11 +56,11 @@ def createfolder(APIURL,APIKEY,doprint=True, output=False):
     '''
 
     variables = { 
-            "sort_by": sortby, 
-            "sort_order": sortorder, 
+            "name": name, 
+            "parent_id": parentid
     } 
 
-    result = bseeptgraphql.dographql(APIURL, APIKEY, query, None )
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
 
     if(doprint is True):
         print(json.dumps(result))
