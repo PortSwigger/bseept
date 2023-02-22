@@ -20,6 +20,7 @@ def getsitetreefolders(APIURL,APIKEY,doprint=True, output=False):
             folders {
                 id
                 name
+                parent_id
             }
         }
     }
