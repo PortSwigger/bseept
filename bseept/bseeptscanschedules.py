@@ -99,11 +99,11 @@ def addscanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configu
 #
 # Update a scan schedule
 #
-def updatescanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_configuration_ids,doprint=True, output=False):
+def updatescanschedule(APIURL,APIKEY,scheduleid, siteid, initialruntime, schedule, scan_configuration_ids,doprint=True, output=False):
  
     query = '''
     mutation UpdateScheduleItems  ($schedule_id: ID!, $site_id: ID, $initial_run_time: Timestamp, $initial_run_time_is_set: Boolean, $schedule: String, $rrule_is_set: Boolean, $scan_configuration_ids: [ID!]) {
-        create_schedule_item (
+        update_schedule_item (
             input: {
                 id: $schedule_id
                 site_id: $site_id
@@ -140,10 +140,12 @@ def updatescanschedule(APIURL,APIKEY,siteid, initialruntime, schedule, scan_conf
     '''
 
     variables = { 
-            "schedule_id": siteid, 
+            "schedule_id": scheduleid, 
             "site_id": siteid,
             "initial_run_time": initialruntime,
+            "initial_run_time_is_set": "True",
             "schedule": schedule,
+            "rrule_is_set": "True",
             "scan_configuration_ids": scan_configuration_ids
     } 
 

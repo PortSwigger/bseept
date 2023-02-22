@@ -144,6 +144,11 @@ def main():
     parser_addscan.add_argument('--scanconfigurationids', help='scan configuration IDs to use', required=True)
 
     parser_updatescanschedule = subparsers.add_parser('updatescanschedule', help='Update a scan schedule')
+    parser_updatescanschedule.add_argument('--scanid', help='scan ID returned from addscanedule or --getschedule', required=True)
+    parser_updatescanschedule.add_argument('--siteid', help='site ID returned from createsite, --getsites or --getsitetree', required=True)
+    parser_updatescanschedule.add_argument('--initialruntime', help='initial run time e.g. 2024-08-19T11:07:25.664Z', required=True)
+    parser_updatescanschedule.add_argument('--schedule', help='fequency of scan run beyond initial run in RRULE format decribed in RFC5545, RFC5546, and RFC5547.', required=True)
+    parser_updatescanschedule.add_argument('--scanconfigurationids', help='scan configuration IDs to use', required=True)
 
     parser_deletescansschedule = subparsers.add_parser('deletescanschedule', help='Delete a scan')
     parser_deletescansschedule.add_argument('--scanid', help='scanid ID returned from addscanschedule or --getschedules', required=True)
@@ -286,7 +291,9 @@ def main():
     # Scans / Schedules
     if(args.command =="addscanschedule"):
         bseeptscanschedules.addscanschedule(apiurl, apikey,args.siteid, args.initialruntime, args.schedule, args.scanconfigurationids)
-        return
+
+    if(args.command =="updatescanschedule"):
+        bseeptscanschedules.updatescanschedule(apiurl, apikey, args.scanid, args.siteid, args.initialruntime, args.schedule, args.scanconfigurationids)
 
     if(args.command == "deletescanschedule"):
         bseeptscanschedules.deletescanschedule(apiurl, apikey, args.scanid)
