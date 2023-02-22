@@ -66,7 +66,9 @@ def getagents(APIURL,APIKEY,doprint=True, output=False):
     if(output is True):
         return result
 
-
+#
+#
+#
 def renameagent (APIURL,APIKEY,name,id, doprint=True, output=False):
     query = '''
     
@@ -90,6 +92,41 @@ def renameagent (APIURL,APIKEY,name,id, doprint=True, output=False):
 
     variables = { 
             "name": name, 
+            "id": id
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
+
+
+def enabledisableagent (APIURL,APIKEY,enabled,id, doprint=True, output=False):
+    query = '''
+    
+     mutation EnableAgent($enabled: Boolean!, $id: ID!) {
+        enable_agent (
+            input: {
+                enabled: $enabled
+                id: $id
+            }
+
+        )
+        
+        {
+            agent {
+                id
+                name
+                enabled
+            }
+        }
+    }
+    '''
+
+    variables = { 
+            "enabled": enabled, 
             "id": id
     } 
 

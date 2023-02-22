@@ -179,6 +179,12 @@ def main():
     parser_renameagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
     parser_renameagent.add_argument('--name', help='new name of the agent', required=True)
 
+    parser_enableagent  = subparsers.add_parser('enableagent', help='Enable an existing agent')
+    parser_enableagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
+
+    parser_disableagent  = subparsers.add_parser('disableagent', help='Disable an existing agent')
+    parser_disableagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
+
     parser_updateagentmaxconcurrentscans = subparsers.add_parser('updateagentmaxconcurrentscans', help='Update the maximum number of concurrent scans this agent host can run')
 
     # agent pools
@@ -335,6 +341,11 @@ def main():
     if(args.command == "renameagent"):
         bseeptagents.renameagent(apiurl, apikey, args.name, args.agentid)
 
+    if(args.command == "enableagent"):
+        bseeptagents.enabledisableagent(apiurl, apikey, True, args.agentid)
+
+    if(args.command == "disableagent"):
+        bseeptagents.enabledisableagent(apiurl, apikey, False, args.agentid)
 
 # Entry point
 if __name__ == '__main__':

@@ -37,6 +37,8 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Rename folder via `renamefolder`
 - [x] Move folder via `movefolder`
 - [x] Rename agent via `renameagent`
+- [x] Enable agent via `enableagent`
+- [x] Disable agent via `disableagent`
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
@@ -56,7 +58,6 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Delete extension via `deleteextension`
 - [ ] Authorize agent via `authorizeagent`
 - [ ] Deauthorize agent via `deauthorizeagent`
-- [ ] Enable or disabled agent via `enabledisableagent`
 - [ ] Update agent maximum concurrent scans via `updateagentmaxconcurrentscans`
 - [ ] Create agent pool via `createagentpool`
 - [ ] Update agent pool via `updateagentpool`
@@ -86,15 +87,15 @@ The following is the help output from the tool
 
 ```
 # py bseept.py --help
-usage: bseept [-h] [-u URL] [--apikey APIKEY] [--getsites] [--getfolders] [--getsitetree] [--getscans] [--getscanconfigs] [--getscanissues GETSCANISSUES] [--getscanreport GETSCANREPORT]
-              [--getscanreportxml GETSCANREPORTXML] [--getschedule] [--getagents] [--getagentpools] [--getextensions]
-              {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogincredentials,updatesiterecordedlogincredentials,deletesiterecordedlogincredentials,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,enabledisableagent,renameagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitetogentpool,createfolder,renamefolder,deletefolder,updatefalsepositive}
+usage: bseept [-h] [-u URL] [--apikey APIKEY] [--getsites] [--getfolders] [--getsitetree] [--getscans] [--getscanconfigs] [--getscanissues GETSCANISSUES] [--getscanreport GETSCANREPORT] [--getscanreportxml GETSCANREPORTXML] [--getschedule] [--getagents] [--getagentpools]
+              [--getunauthorizedagents] [--getextensions]
+              {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogincredentials,updatesiterecordedlogincredentials,deletesiterecordedlogincredentials,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,enabledisableagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitetogentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive}
               ...
 
 Burp Suite Enterprise Edition Power Tools
 
 positional arguments:
-  {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogincredentials,updatesiterecordedlogincredentials,deletesiterecordedlogincredentials,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,enabledisableagent,renameagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitetogentpool,createfolder,renamefolder,deletefolder,updatefalsepositive}
+  {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogincredentials,updatesiterecordedlogincredentials,deletesiterecordedlogincredentials,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,enabledisableagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitetogentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive}
                         modify commands
     createsite          Create a site
     deletesite          Delete a site
@@ -136,6 +137,8 @@ positional arguments:
     deauthorizeagent    Deauthorize an existing agent from running scans
     enabledisableagent  Enable or disable an existing agent
     renameagent         Rename an existing agent
+    enableagent         Enable an existing agent
+    disableagent        Disable an existing agent
     updateagentmaxconcurrentscans
                         Update the maximum number of concurrent scans this agent host can run
     createagentpool     Create an agent pool
@@ -145,9 +148,9 @@ positional arguments:
     assignsitetogentpool
                         Assign sites to an agent pool
     createfolder        Create a folder
-    renamefolder        Rename a folder
-    renamefolder        Move a folder
     deletefolder        Delete a folder
+    renamefolder        Rename a folder
+    movefolder          Move a folder
     updatefalsepositive
                         Update the false positive for an issue
 
@@ -169,6 +172,8 @@ optional arguments:
   --getschedule         Scan schedules
   --getagents           Configured scan agents
   --getagentpools       Configured scan agent pools
+  --getunauthorizedagents
+                        Get the curretly unauthorized agents
   --getextensions       Extensions installed
 
 with 🧡 from PortSwigger
