@@ -13,6 +13,7 @@ This tool is currently work in progress. The following lists track the implement
 ### Implemented
 
 - [x] Get sites via `--getsites`
+- [x] Get folders via `--getfolders`
 - [x] Get site tree via `--getsitetree`
 - [x] Get scans via `--getscans`
 - [x] Get scan configurations via `--getscanconfigs`
