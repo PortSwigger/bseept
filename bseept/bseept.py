@@ -91,6 +91,7 @@ def main():
     # get agents and pools
     parser.add_argument('--getagents', help='Configured scan agents', action='store_true')
     parser.add_argument('--getagentpools', help='Configured scan agent pools', action='store_true')
+    parser.add_argument('--getunauthorizedagents', help='Get the curretly unauthorized agents', action='store_true')
 
     # get extensions
     parser.add_argument('--getextensions', help='Extensions installed', action='store_true')
@@ -281,7 +282,10 @@ def main():
         bseeptscanschedules.getscheduleitems(apiurl,apikey)
 
     if(args.getextensions is True):
-        bseeptextensions.getextensions(apiurl,apikey)
+        bseeptextensions.getextensions(apiurl,apikey) 
+
+    if(args.getunauthorizedagents is True):
+        bseeptagents.getunauthorisedagents(apiurl,apikey)
 
     #
     # Mutations

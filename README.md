@@ -21,6 +21,7 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Get scan report in HTML via `--getscanreport`
 - [x] Get scan report in XML via `--getscanreportxml`
 - [x] Get agents via `--getagents`
+- [x] Get unauthorized agents via `--getunauthorizedagents`
 - [x] Get agentpools via` --getagentpools`
 - [x] Get schedule via `--getschedule`
 - [x] Get extensions via `--getextensions`

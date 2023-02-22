@@ -7,6 +7,28 @@
 import bseeptgraphql
 import json
 
+
+#
+# Get the currenly unauthorised agents
+def getunauthorisedagents(APIURL,APIKEY,doprint=True, output=False):
+    
+    query = '''
+        query GetUnauthorisedAgents {
+            
+            unauthorized_agents {
+                ip
+            }
+        }
+        '''
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
+
+#
 #
 # Get the agents configured in the system
 #
