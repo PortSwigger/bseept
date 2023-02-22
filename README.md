@@ -282,7 +282,6 @@ The following are example uses cases.
 The following will use the Python client library for various things. This can be found in `bseept-client-library-example.py`
 
 ```python
-import bseeptsites
 #
 # Burp Suite Enterprise Edition Power Tools
 #
