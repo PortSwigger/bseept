@@ -136,3 +136,40 @@ def enabledisableagent (APIURL,APIKEY,enabled,id, doprint=True, output=False):
         print(json.dumps(result))
     if(output is True):
         return result
+
+
+def concurrentscansforagent (APIURL,APIKEY,scans,id, doprint=True, output=False):
+
+    query = '''
+    
+     mutation UpdateAgentMaxConcurrentScans($scans: Int!, $id: ID!) {
+        update_agent_max_concurrent_scans (
+            input: {
+                max_concurrent_scans: $scans
+                id: $id
+            }
+
+        )
+        
+        {
+            agent {
+                id
+                name
+                max_concurrent_scans
+                enabled
+            }
+        }
+    }
+    '''
+
+    variables = { 
+            "scans": scans, 
+            "id": id
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result

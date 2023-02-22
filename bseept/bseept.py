@@ -173,7 +173,6 @@ def main():
     # agents 
     parser_authorizeagent = subparsers.add_parser('authorizeagent', help='Authorize a new agent to be able to run scans')
     parser_deauthorizeagent = subparsers.add_parser('deauthorizeagent', help='Deauthorize an existing agent from running scans')
-    parser_enabledisableagent  = subparsers.add_parser('enabledisableagent', help='Enable or disable an existing agent')
 
     parser_renameagent = subparsers.add_parser('renameagent', help='Rename an existing agent')
     parser_renameagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
@@ -186,6 +185,8 @@ def main():
     parser_disableagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
 
     parser_updateagentmaxconcurrentscans = subparsers.add_parser('updateagentmaxconcurrentscans', help='Update the maximum number of concurrent scans this agent host can run')
+    parser_updateagentmaxconcurrentscans.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
+    parser_updateagentmaxconcurrentscans.add_argument('--concurrentscans', help='number of concurrent scans for this agent', required=True)
 
     # agent pools
     parser_createagentpool = subparsers.add_parser('createagentpool', help='Create an agent pool')
@@ -346,6 +347,9 @@ def main():
 
     if(args.command == "disableagent"):
         bseeptagents.enabledisableagent(apiurl, apikey, False, args.agentid)
+
+    if(args.command == "updateagentmaxconcurrentscans"):
+        bseeptagents.concurrentscansforagent(apiurl,apikey,args.concurrentscans, args.agentid)
 
 # Entry point
 if __name__ == '__main__':
