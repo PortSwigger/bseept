@@ -235,6 +235,9 @@ def main():
     if(args.getsites is True):
         bseeptsites.getsites(apiurl,apikey)
 
+    if(args.getfolders is True):
+        bseeptfolders.getsitetreefolders(apiurl,apikey)
+
     if(args.getsitetree is True):
         bseeptsites.getsitetree(apiurl,apikey)
 
