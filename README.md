@@ -34,6 +34,7 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Create folder via `createfolder`
 - [x] Delete folder via `deletefolder`
 - [x] Rename folder via `renamefolder`
+- [x] Move folder via `movefolder`
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
@@ -61,8 +62,6 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Move agent pool via `moveagentpool`
 - [ ] Delete agent pool via `deleteagentpool`
 - [ ] Assign site to agent pool via `assignsitetogentpool`
-- [ ] Move folder via `movefolder`
-
 
 ## Authentication Configuration
 

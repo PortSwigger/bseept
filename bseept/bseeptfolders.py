@@ -101,13 +101,13 @@ def renamefolder(APIURL,APIKEY,name,id, doprint=True, output=False):
     if(output is True):
         return result
 
-def movefolder(APIURL,APIKEY,name,parentid,doprint=True, output=False):
+def movefolder(APIURL,APIKEY,id,parentid,doprint=True, output=False):
     query = '''
     
-     mutation CreateFolder($name: String!, $parent_id: ID!) {
-        create_folder (
+     mutation MoveFolder($id: ID!, $parent_id: ID!) {
+        move_folder (
             input: {
-                name: $name
+                folder_id: $id
                 parent_id: $parent_id
             }
 
@@ -124,7 +124,7 @@ def movefolder(APIURL,APIKEY,name,parentid,doprint=True, output=False):
     '''
 
     variables = { 
-            "name": name, 
+            "id": id, 
             "parent_id": parentid
     } 
 

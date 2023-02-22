@@ -196,6 +196,8 @@ def main():
     parser_renamefolder.add_argument('--name', help='new name of the folder', required=True)
 
     parser_movefolder = subparsers.add_parser('movefolder', help='Move a folder')
+    parser_movefolder.add_argument('--folderid', help='folder ID returned from createfolder or --getfolders', required=True)
+    parser_movefolder.add_argument('--parentfolderid', help='new parent folder ID returned from createfolder or --getfolders', required=True)
 
     # credentials
 
@@ -316,6 +318,10 @@ def main():
 
     if(args.command == "renamefolder"):
         bseeptfolders.renamefolder(apiurl, apikey, args.name, args.folderid)
+
+    if(args.command == "movefolder"):
+        bseeptfolders.movefolder(apiurl, apikey, args.folderid, args.parentfolderid)
+
 
 
 # Entry point
