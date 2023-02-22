@@ -173,3 +173,38 @@ def concurrentscansforagent (APIURL,APIKEY,scans,id, doprint=True, output=False)
         print(json.dumps(result))
     if(output is True):
         return result
+
+def createpool (APIURL,APIKEY,name,desc, doprint=True, output=False):
+
+    query = '''
+    
+     mutation CreateAgentPool($name: String!, $desc: String) {
+        create_agent_pool (
+            input: {
+                name: $name
+                description: $desc
+            }
+
+        )
+        
+        {
+            agent_pool {
+                id
+                name
+                description
+            }
+        }
+    }
+    '''
+
+    variables = { 
+            "name": name, 
+            "desc": desc
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result

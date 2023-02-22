@@ -190,6 +190,9 @@ def main():
 
     # agent pools
     parser_createagentpool = subparsers.add_parser('createagentpool', help='Create an agent pool')
+    parser_createagentpool.add_argument('--name', help='name of the agent pool', required=True)
+    parser_createagentpool.add_argument('--description', help='description of the agent pool', required=True)
+
     parser_updateagentpool = subparsers.add_parser('updateagentpool', help='Update an agent pool')
     parser_moveagentpool = subparsers.add_parser('moveagentpool', help='Move an agent pool')
     parser_deleteagentpool = subparsers.add_parser('deleteagentpool', help='Delete an agent pool')
@@ -350,6 +353,9 @@ def main():
 
     if(args.command == "updateagentmaxconcurrentscans"):
         bseeptagents.concurrentscansforagent(apiurl,apikey,args.concurrentscans, args.agentid)
+
+    if(args.command == "createagentpool"):
+        bseeptagents.createpool(apiurl,apikey, args.name, args.description)
 
 # Entry point
 if __name__ == '__main__':
