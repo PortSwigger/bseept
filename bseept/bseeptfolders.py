@@ -8,13 +8,12 @@
 # Library documentation
 # https://github.com/prodigyeducation/python-graphql-client
 
-from python_graphql_client import GraphqlClient
+import bseeptgraphql
 import json
 
 def getsitetreefolders(APIURL,APIKEY,doprint=True, output=False):
-    headers = { "Authorization": APIKEY }
-    client = GraphqlClient(endpoint=APIURL+"/graphql/v1", verify=False, headers=headers)
-    result = client.execute('''
+
+    query = '''
     query GetSiteTreeFolders {
         site_tree {
             folders {
@@ -24,7 +23,33 @@ def getsitetreefolders(APIURL,APIKEY,doprint=True, output=False):
             }
         }
     }
-    ''')
+    '''
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, None )
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
+
+def createfolder(APIURL,APIKEY,doprint=True, output=False):
+    query = '''CreateFolder {
+        site_tree {
+            folders {
+                id
+                name
+                parent_id
+            }
+        }
+    }
+    '''
+
+    variables = { 
+            "sort_by": sortby, 
+            "sort_order": sortorder, 
+    } 
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, None )
 
     if(doprint is True):
         print(json.dumps(result))
