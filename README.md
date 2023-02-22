@@ -285,7 +285,7 @@ The following will use the Python client library to query the configured sites a
 import bseeptsites
 
 
-print(bseeptsites.getsites("https://my.bsee.server/","MYAPIKEY")
+bseeptsites.getsites("https://my.bsee.server/","MYAPIKEY")
 ```
 
 
