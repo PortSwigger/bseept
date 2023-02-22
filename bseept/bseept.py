@@ -263,7 +263,7 @@ def main():
         bseeptscanschedules.getscheduleitems(apiurl,apikey)
 
     if(args.getextensions is True):
-        bseeptextensions.getscheduleitems(apiurl,apikey)
+        bseeptextensions.getextensions(apiurl,apikey)
 
     #
     # Mutations

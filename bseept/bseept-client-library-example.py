@@ -54,7 +54,7 @@ def main():
     # Example 3
     #  - we tell the API to return the resulting JSON and then print it
     #  - note: the API will by default also print the results itself as we don't specifically say what to do
-    print("\n\n--- Example 3\n\n")
+    print("\n\n--- Example 3a\n\n")
     ret = bseeptsites.getsites(apiurl,BSEEAPIKEY,output = True)
     print(json.dumps(ret))
 
