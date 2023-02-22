@@ -50,6 +50,14 @@ def main():
     print("\n\n--- Example 2\n\n")
     bseeptsites.getsites(apiurl,BSEEAPIKEY,doprint = True, output = False)
 
+
+    # Example 3
+    #  - we tell the API to return the resulting JSON and then print it
+    #  - note: the API will by default also print the results itself as we don't specifically say what to do
+    print("\n\n--- Example 3\n\n")
+    ret = bseeptsites.getsites(apiurl,BSEEAPIKEY,output = True)
+    print(json.dumps(ret))
+
 # Entry point
 if __name__ == '__main__':
     main()
