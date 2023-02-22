@@ -10,7 +10,7 @@ import json
 #
 # All configured scans on the system
 #
-def getscans(APIURL,APIKEY):
+def getscans(APIURL,APIKEY,doprint=True, output=False):
 
     # scans(offset: Int, limit: Int, sort_column: ScansSortColumn, sort_order: SortOrder, scan_status: [ScanStatus], site_id: ID, schedule_item_id: ID, scan_end_time_from: Timestamp, scan_end_time_to: Timestamp): [Scan!]
 
@@ -89,12 +89,16 @@ def getscans(APIURL,APIKEY):
     '''
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 #
 # System wide scan configurations
 #
-def getscanconfigs(APIURL, APIKEY):
+def getscanconfigs(APIURL, APIKEY,doprint=True, output=False):
 
     # scan_configurations(): [ScanConfiguration!]
 
@@ -114,12 +118,16 @@ def getscanconfigs(APIURL, APIKEY):
     '''
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 #
 # Issues for a specified scan
 #
-def getscanissues(APIURL, APIKEY, scan_id):
+def getscanissues(APIURL, APIKEY, scan_id,doprint=True, output=False):
 
     # scan(id: ID!): Scan
 
@@ -188,13 +196,17 @@ def getscanissues(APIURL, APIKEY, scan_id):
     variables = {"id": scan_id}
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 
 #
 # Report for a specific scan
 #
-def getscanreport(APIURL, APIKEY, scan_id, include_falsepositives, report_type = "detailed", timezone_offset = 0, format="report_html" ):
+def getscanreport(APIURL, APIKEY, scan_id, include_falsepositives, report_type = "detailed", timezone_offset = 0, format="report_html" ,doprint=True, output=False):
 
     # scan_report(scan_id: ID!, timezone_offset: Int, report_type: ScanReportType, include_false_positives: Boolean, severities: [Severity]): ScanReport
 
@@ -209,12 +221,16 @@ def getscanreport(APIURL, APIKEY, scan_id, include_falsepositives, report_type =
     variables = {"id": scan_id, "include_false_positives": include_falsepositives, "report_type": report_type, "timezone_offset": timezone_offset }
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 #
 # Report for a specific scan in XML
 #
-def getscanreportxml(APIURL, APIKEY, scan_id, include_falsepositives, timezone_offset = 0):
+def getscanreportxml(APIURL, APIKEY, scan_id, include_falsepositives, timezone_offset = 0,doprint=True, output=False):
     
     # burp_xml_report(scan_id: ID!, timezone_offset: Int, include_false_positives: Boolean, severities: [Severity], base64_encode_requests_and_responses: Boolean): BurpReport
     
@@ -229,4 +245,8 @@ def getscanreportxml(APIURL, APIKEY, scan_id, include_falsepositives, timezone_o
     variables = {"id": scan_id, "include_false_positives": include_falsepositives, "timezone_offset": timezone_offset }
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result

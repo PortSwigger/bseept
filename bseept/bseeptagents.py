@@ -10,7 +10,7 @@ import json
 #
 # Get the agents configured in the system
 #
-def getagents(APIURL,APIKEY):
+def getagents(APIURL,APIKEY,doprint=True, output=False):
     
     query = '''
         query GetAgents {
@@ -38,4 +38,8 @@ def getagents(APIURL,APIKEY):
         '''
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result

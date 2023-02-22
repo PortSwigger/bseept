@@ -8,9 +8,10 @@
 # https://github.com/prodigyeducation/python-graphql-client
 
 from python_graphql_client import GraphqlClient
+import bseeptgraphql
 import json
 
-def getevents(APIURL,APIKEY):
+def getevents(APIURL,APIKEY,doprint=True, output=False):
     
     query = ''' GetEventLog {
         scaneventlog {
@@ -30,4 +31,8 @@ def getevents(APIURL,APIKEY):
 
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result

@@ -10,7 +10,7 @@ import json
 #
 # Get the sites configured in the system
 #
-def getsites(APIURL,APIKEY):
+def getsites(APIURL,APIKEY,doprint=True, output=False):
     
     query = '''
         query GetSiteTree {
@@ -47,12 +47,16 @@ def getsites(APIURL,APIKEY):
         '''
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 #
 # Get the site tree which is comprised of folders and sites
 #
-def getsitetree(APIURL,APIKEY, urls=None, parent=1):
+def getsitetree(APIURL,APIKEY, urls=None, parent=1,doprint=True, output=False):
     query = '''
         query GetSiteTree {
             site_tree {
@@ -93,13 +97,17 @@ def getsitetree(APIURL,APIKEY, urls=None, parent=1):
     '''
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
-    print(json.dumps(result))
+
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 
 #
 # Create a site
 #
-def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, protocol_options, email_recipients = "", agent_pool_id = "0"):
+def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, protocol_options, email_recipients = "", agent_pool_id = "0",print=True, output=False):
  
     #
     #                 $scan_configuration_id: [ID!]           
@@ -177,13 +185,16 @@ def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, pro
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
 
-    print(json.dumps(result))
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 
 #
 # Delete a site
 #
-def deletesite(APIURL,APIKEY, site_id):
+def deletesite(APIURL,APIKEY, site_id,print=True, output=False):
  
     query = '''
     mutation DeleteSite($siteid: ID!) {
@@ -205,12 +216,15 @@ def deletesite(APIURL,APIKEY, site_id):
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
 
-    print(json.dumps(result))
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 #
 # Rename a site
 #
-def renamesite(APIURL,APIKEY, site_id, newname):
+def renamesite(APIURL,APIKEY, site_id, newname,doprint=True, output=False):
  
     query = '''
     mutation RenameSite($siteid: ID!, $name: String!) {
@@ -235,7 +249,10 @@ def renamesite(APIURL,APIKEY, site_id, newname):
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
 
-    print(json.dumps(result))
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
 
 
 

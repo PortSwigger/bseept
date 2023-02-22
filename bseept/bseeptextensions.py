@@ -11,7 +11,7 @@ import json
 #
 # Get the extensions installed
 #
-def getscheduleitems(APIURL,APIKEY):
+def getextensions(APIURL,APIKEY, doprint=True, output=False):
  
     query = '''
         query GetExtensions {
@@ -32,5 +32,8 @@ def getscheduleitems(APIURL,APIKEY):
         '''
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
-    print(json.dumps(result))
 
+    if(doprint is True):
+        print(json.dumps(result))
+    if(output is True):
+        return result
