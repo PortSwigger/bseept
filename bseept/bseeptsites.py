@@ -113,7 +113,7 @@ def getsitetree(APIURL,APIKEY, urls=None, parent=1,doprint=True, output=False):
 #
 # Create a site
 #
-def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, protocol_options, email_recipients = "", agent_pool_id = "0",print=True, output=False):
+def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, protocol_options, email_recipients = "", agent_pool_id = "-1", doprint=True, output=False):
  
     #
     #                 $scan_configuration_id: [ID!]           
@@ -122,8 +122,12 @@ def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, pro
    #                   id
    #              }
     #
+
+    # $email_recipients: [EmailRecipientInput!]
+    #                 email_recipients: $email_recipients
+
     query = '''
-    mutation CreateSite($name: String!, $parent_id: ID!, $urls: [String!]!, $protocol_options: ScopeProtocolOptions!, $scan_configuration_ids: [ID!], $agentpoolid: ID!, $email_recipients: [EmailRecipientInput!]) {
+    mutation CreateSite($name: String!, $parent_id: ID!, $urls: [String!]!, $protocol_options: ScopeProtocolOptions!, $scan_configuration_ids: [ID!], $agentpoolid: ID!, ) {
  
 
         create_site(
@@ -139,7 +143,7 @@ def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, pro
                     recorded_logins: []
                 } 
                 scan_configuration_ids: $scan_configuration_ids
-                email_recipients: $email_recipients
+
                 agent_pool_id: $agentpoolid
             } 
             ) 
@@ -190,7 +194,7 @@ def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, pro
             "protocol_options": protocol_options.lstrip('\'').rstrip('\''), 
             "scan_configuration_ids": scan_configuration_ids,
             "email_recipients": email_recipients,
-            "agent_pool_id": agent_pool_id
+            "agentpoolid": agent_pool_id
     } 
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
