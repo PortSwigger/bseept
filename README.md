@@ -53,7 +53,6 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Get BApp details via `getbappdetails`
 
 ### To Do
-- [ ] Update scan config via `updatescanconfig`
 - [ ] Create site login credentials via`createsitelogincredentials`
 - [ ] Update site login credentials via `updatesitelogincredentials`
 - [ ] Delete site login credentials via `deletesitelogincredentials`
