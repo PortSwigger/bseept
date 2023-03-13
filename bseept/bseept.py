@@ -165,7 +165,12 @@ def main():
     parser_createscanconfig.add_argument('--jsonconfig', help='escaped JSON configuration fragment', required=True)
 
     parser_updatescanconfig = subparsers.add_parser('updatescanconfig', help='Update a scan configuration')
+    parser_updatescanconfig.add_argument('--scanconfigid', help='scan configuration ID returned from --createscanconfig or --getscanconfigs', required=True)
+    parser_updatescanconfig.add_argument('--name', help='scan configuration name', required=True)
+    parser_updatescanconfig.add_argument('--jsonconfig', help='escaped JSON configuration fragment', required=True)
+
     parser_deletescanconfig = subparsers.add_parser('deletescanconfig', help='Delete a scan configuration')
+    parser_deletescanconfig.add_argument('--scanconfigid', help='scan configuration ID returned from --createscanconfig or --getscanconfigs', required=True)
 
     # BApps
     parser_uploadbapp = subparsers.add_parser('uploadbapp', help='Upload a BApp')
@@ -461,8 +466,19 @@ def main():
         bseeptextensions.getbappdetails(apiurl, apikey, args.filename, b64jar.decode('utf-8'))
 
 
+    #
+    # Scan configurations
+
     if(args.command == "createscanconfig"):
         bseeptscanconfigs.createscanconfig(apiurl,apikey,args.name, args.jsonconfig)
+
+    if(args.command == "updatescanconfig"):
+        bseeptscanconfigs.updatescanconfig(apiurl,apikey,args.scanconfigid,args.name, args.jsonconfig)
+
+    if(args.command == "deletescanconfig"):
+        bseeptscanconfigs.deletescanconfig(apiurl,apikey,args.scanconfigid, False)
+
+
 
 # Entry point
 if __name__ == '__main__':
