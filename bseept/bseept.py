@@ -171,6 +171,9 @@ def main():
     parser_updateextensionname.add_argument('--jarname', help='new extension JAR name', required=True)
 
     parser_updateextensiondescription = subparsers.add_parser('updateextensiondescription', help='Update a custom extension description')
+    parser_updateextensiondescription.add_argument('--extid', help='extension ID returned from --getextensions', required=True)
+    parser_updateextensiondescription.add_argument('--description', help='new extension description', required=True)
+
     parser_updateextensionjar = subparsers.add_parser('updateextensionjar', help='Update a custom extension JAR')
     parser_deleteextension = subparsers.add_parser('deleteextension', help='Delete a custom extension or BApp')
 
@@ -375,9 +378,12 @@ def main():
         bseeptagents.deletepool(apiurl,apikey, args.poolid)
 
 
-    # Exteions
+    # Extensions
     if(args.command == "updateextensionname"):
         bseeptextensions.updateextensionname(apiurl,apikey, args.extid, args.jarname)
+
+    if(args.command == "updateextensiondescription"):
+        bseeptextensions.updateextensiondescription(apiurl,apikey, args.extid, args.description)
 
 # Entry point
 if __name__ == '__main__':
