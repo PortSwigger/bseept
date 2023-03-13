@@ -51,12 +51,12 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Delete extension via `deleteextension`
 - [x] Upload BApp via `uploadbapp`
 - [x] Get BApp details via `getbappdetails`
+- [x] Create scan config via `createscanconfig`
 
 ### To Do
 - [ ] Create site login credentials via`createsitelogincredentials`
 - [ ] Update site login credentials via `updatesitelogincredentials`
 - [ ] Delete site login credentials via `deletesitelogincredentials`
-- [ ] Create scan config via `createscanconfig`
 - [ ] Update scan config via `updatescanconfig`
 - [ ] Delete scan config via `deletescanconfig`
 - [ ] Authorize agent via `authorizeagent`

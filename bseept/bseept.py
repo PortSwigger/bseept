@@ -161,6 +161,9 @@ def main():
 
     # scan configurations
     parser_createscanconfig = subparsers.add_parser('createscanconfig', help='Create a scan configuration')
+    parser_createscanconfig.add_argument('--name', help='scan configuration name', required=True)
+    parser_createscanconfig.add_argument('--jsonconfig', help='escaped JSON configuration fragment', required=True)
+
     parser_updatescanconfig = subparsers.add_parser('updatescanconfig', help='Update a scan configuration')
     parser_deletescanconfig = subparsers.add_parser('deletescanconfig', help='Delete a scan configuration')
 
@@ -456,6 +459,10 @@ def main():
             return
 
         bseeptextensions.getbappdetails(apiurl, apikey, args.filename, b64jar.decode('utf-8'))
+
+
+    if(args.command == "createscanconfig"):
+        bseeptscanconfigs.createscanconfig(apiurl,apikey,args.name, args.jsonconfig)
 
 # Entry point
 if __name__ == '__main__':
