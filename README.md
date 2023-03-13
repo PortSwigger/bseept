@@ -54,11 +54,11 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Create scan config via `createscanconfig`
 - [x] Update scan config via `updatescanconfig`
 - [x] Delete scan config via `deletescanconfig`
+- [x] Create site login credentials via`createsitelogincredentials`
+- [x] Update site login credentials via `createsitelogincredentials`
+- [x] Delete site login credentials via `deletesitelogincredentials`
 
 ### To Do
-- [ ] Create site login credentials via`createsitelogincredentials`
-- [ ] Update site login credentials via `updatesitelogincredentials`
-- [ ] Delete site login credentials via `deletesitelogincredentials`
 - [ ] Create site recorded login credentials via`createsiterecordedlogincredentials`
 - [ ] Update site recorded login credentials via `updatesiterecordedlogincredentials`
 - [ ] Delete site recorded login credentials via `deletesiterecordedlogincredentials`
@@ -69,6 +69,8 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Deauthorize agent via `deauthorizeagent`
 - [ ] Move agent pool via `moveagentpool`
 - [ ] Assign site to agent pool via `assignsitetogentpool`
+- [ ] Update site scan config via `updatesitescanconfig`
+- [ ] Update site scope via `updatesitescope`
 
 ## Authentication Configuration
 

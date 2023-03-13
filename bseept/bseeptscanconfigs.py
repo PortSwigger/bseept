@@ -124,7 +124,7 @@ def updatescanconfig(APIURL, APIKEY, id, name, jsonconfig, doprint=True, output=
         return result
 
 #
-# Update a system-wide scan configuration
+# Delete a system-wide scan configuration
 #
 def deletescanconfig(APIURL, APIKEY, id, force, doprint=True, output=False):
     query = '''

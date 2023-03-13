@@ -133,9 +133,24 @@ def main():
     parser_updatesiteextensions.add_argument('--siteid', help='site ID', required=True)
     parser_updatesiteextensions.add_argument('--extensionids', help='extension IDs to use', required=True)
 
+    #
+    # site credentials
+    #
     parser_createsitelogincredentials = subparsers.add_parser('createsitelogincredentials', help='Create a sites login credentials')
+    parser_createsitelogincredentials.add_argument('--siteid', help='site ID', required=True)
+    parser_createsitelogincredentials.add_argument('--label', help='descriptive name', required=True)
+    parser_createsitelogincredentials.add_argument('--username', help='username', required=True)
+    parser_createsitelogincredentials.add_argument('--password', help='password', required=True)
+
     parser_updatesitelogincredentials = subparsers.add_parser('updatesitelogincredentials', help='Update a sites login credentials')
+    parser_updatesitelogincredentials.add_argument('--credid', help='site ID', required=True)
+    parser_updatesitelogincredentials.add_argument('--label', help='descriptive name', required=True)
+    parser_updatesitelogincredentials.add_argument('--username', help='username', required=True)
+    parser_updatesitelogincredentials.add_argument('--password', help='password', required=True)
+
     parser_deletesitelogincredentials = subparsers.add_parser('deletesitelogincredentials', help='Delete a sites login credentials')
+    parser_deletesitelogincredentials.add_argument('--credid', help='site ID', required=True)
+
     parser_createsiterecordedlogincredentials = subparsers.add_parser('createsiterecordedlogincredentials', help='Create a sites recorded login credentials')
     parser_updatesiterecordedlogincredentials = subparsers.add_parser('updatesiterecordedlogincredentials', help='Update a sites recorded login credentials')
     parser_deletesiterecordedlogincredentials = subparsers.add_parser('deletesiterecordedlogincredentials', help='Delete a sites recorded login credentials')
@@ -212,10 +227,10 @@ def main():
     parser_renameagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
     parser_renameagent.add_argument('--name', help='new name of the agent', required=True)
 
-    parser_enableagent  = subparsers.add_parser('enableagent', help='Enable an existing agent')
+    parser_enableagent = subparsers.add_parser('enableagent', help='Enable an existing agent')
     parser_enableagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
 
-    parser_disableagent  = subparsers.add_parser('disableagent', help='Disable an existing agent')
+    parser_disableagent = subparsers.add_parser('disableagent', help='Disable an existing agent')
     parser_disableagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
 
     parser_updateagentmaxconcurrentscans = subparsers.add_parser('updateagentmaxconcurrentscans', help='Update the maximum number of concurrent scans this agent host can run')
@@ -478,6 +493,16 @@ def main():
     if(args.command == "deletescanconfig"):
         bseeptscanconfigs.deletescanconfig(apiurl,apikey,args.scanconfigid, False)
 
+    #
+    # Site credentials
+    if(args.command == "createsitelogincredentials"):
+        bseeptcredentials.createsitelogincred(apiurl, apikey, args.siteid, args.label, args.username, args.password)
+
+    if (args.command == "updatesitelogincredentials"):
+        bseeptcredentials.updatesitelogincred(apiurl, apikey, args.credid, args.label, args.username, args.password)
+
+    if (args.command == "deletelogincredentials"):
+        bseeptcredentials.updatesitelogincred(apiurl, apikey, args.credid)
 
 
 # Entry point
