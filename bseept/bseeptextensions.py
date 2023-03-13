@@ -225,3 +225,34 @@ def updatecustomeextensionjar(APIURL, APIKEY, id, filename, b64jar, doprint=True
         print(json.dumps(result))
     if (output is True):
         return result
+
+#
+# Delete extension
+#
+def deleteextension(APIURL, APIKEY, id, doprint=True, output=False):
+    query = '''
+
+     mutation DeleteExtension($id: ID!) {
+        delete_extension (
+            input: {
+                id: $id
+            }
+
+        )
+
+        {
+            id
+        }
+    }
+    '''
+
+    variables = {
+        "id": id
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result

@@ -185,6 +185,7 @@ def main():
     parser_updateextensionjar.add_argument('--localjarname', help='path to local JAR', required=True)
 
     parser_deleteextension = subparsers.add_parser('deleteextension', help='Delete a custom extension or BApp')
+    parser_deleteextension.add_argument('--extid', help='extension ID returned from --getextensions', required=True)
 
     # agents 
     parser_authorizeagent = subparsers.add_parser('authorizeagent', help='Authorize a new agent to be able to run scans')
@@ -393,6 +394,9 @@ def main():
 
     if(args.command == "updateextensiondescription"):
         bseeptextensions.updateextensiondescription(apiurl,apikey, args.extid, args.description)
+
+    if(args.command == "deleteextension"):
+        bseeptextensions.deleteextension(apiurl, apikey,args.extid)
 
     if(args.command == "uploadextension"):
 
