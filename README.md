@@ -43,6 +43,7 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Create agent pool via `createagentpool`
 - [x] Update agent pool via `updateagentpool`
 - [x] Delete agent pool via `deleteagentpool`
+- [x] Update extension name via `updateextensionname`
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
@@ -56,7 +57,6 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Upload BApp via `uploadbapp`
 - [ ] Get BApp details via `getbappdetails`
 - [ ] Upload extension via `uploadextension`
-- [ ] Update extension name via `updateextensionname`
 - [ ] Update extension description via `updateextensiondescription`
 - [ ] Update extension JAR via `updateextensionjar`
 - [ ] Delete extension via `deleteextension`

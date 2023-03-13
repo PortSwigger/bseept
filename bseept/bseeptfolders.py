@@ -59,7 +59,7 @@ def createfolder(APIURL,APIKEY,name,parentid,doprint=True, output=False):
             "parent_id": parentid
     } 
 
-    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables )
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
 
     if(doprint is True):
         print(json.dumps(result))
