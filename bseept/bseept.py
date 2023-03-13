@@ -162,6 +162,9 @@ def main():
 
     # BApps
     parser_uploadbapp = subparsers.add_parser('uploadbapp', help='Upload a BApp')
+    parser_uploadbapp.add_argument('--filename', help='extension filename', required=True)
+    parser_uploadbapp.add_argument('--localjarname', help='path to local JAR', required=True)
+
     parser_getbappdetails = subparsers.add_parser('getbappdetails', help='Get BApp details without adding it to the list of usable extensions - this uploads and parses the BApp')
 
     # extensions
@@ -420,6 +423,18 @@ def main():
             return
 
         bseeptextensions.updatecustomeextensionjar(apiurl, apikey, args.extid, args.filename, b64jar.decode('utf-8'))
+
+    if(args.command == "uploadbapp"):
+
+        try:
+            with open(args.localjarname, "rb") as jar_file:
+                b64jar = base64.b64encode(jar_file.read())
+
+        except Exception as inst:
+            print("[!] Error whilst processing JAR file")
+            return
+
+        bseeptextensions.uploadbapp(apiurl, apikey, args.filename, b64jar.decode('utf-8'))
 
 # Entry point
 if __name__ == '__main__':
