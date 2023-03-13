@@ -180,6 +180,10 @@ def main():
     parser_updateextensiondescription.add_argument('--description', help='new extension description', required=True)
 
     parser_updateextensionjar = subparsers.add_parser('updateextensionjar', help='Update a custom extension JAR')
+    parser_updateextensionjar.add_argument('--extid', help='extension ID returned from --getextensions', required=True)
+    parser_updateextensionjar.add_argument('--filename', help='extension filename', required=True)
+    parser_updateextensionjar.add_argument('--localjarname', help='path to local JAR', required=True)
+
     parser_deleteextension = subparsers.add_parser('deleteextension', help='Delete a custom extension or BApp')
 
     # agents 
@@ -402,6 +406,16 @@ def main():
 
         bseeptextensions.uploadcustomeextension(apiurl, apikey, args.filename, b64jar.decode('utf-8'), args.name, args.description)
 
+    if(args.command == "updateextensionjar"):
+        try:
+            with open(args.localjarname, "rb") as jar_file:
+                b64jar = base64.b64encode(jar_file.read())
+
+        except Exception as inst:
+            print("[!] Error whilst processing JAR file")
+            return
+
+        bseeptextensions.updatecustomeextensionjar(apiurl, apikey, args.extid, args.filename, b64jar.decode('utf-8'))
 
 # Entry point
 if __name__ == '__main__':

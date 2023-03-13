@@ -131,7 +131,7 @@ def updateextensiondescription(APIURL, APIKEY, id, description, doprint=True, ou
 
 
 #
-# Upload a custom (none BApp) extension - assume b64jar contains the BASE64 encoded blob
+# Upload a custom (none BApp) extension - assumes b64jar contains the BASE64 encoded blob
 #
 def uploadcustomeextension(APIURL, APIKEY, filename, b64jar, name, description, doprint=True, output=False):
     query = '''
@@ -170,6 +170,53 @@ def uploadcustomeextension(APIURL, APIKEY, filename, b64jar, name, description, 
         "b64jar": b64jar,
         "name": name,
         "desc": description
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
+
+#
+# Update a custom (none BApp) extension - assumes b64jar contains the BASE64 encoded blob
+#
+def updatecustomeextensionjar(APIURL, APIKEY, id, filename, b64jar, doprint=True, output=False):
+    query = '''
+
+     mutation UpdateCustomExtensionJar($id: ID!, $filename: String!, $b64jar: String!) {
+        update_custom_extension_jar(
+            input: {
+                id: $id
+                extension_filename: $filename
+                extension_jar_as_base_64: $b64jar
+            }
+
+        )
+
+        {
+            extension {
+                id
+                uploaded_filename
+                name
+                description
+                uploaded_date
+                uploaded_by
+                bapp_details{
+                    bapp_uuid
+                    author
+                    version
+                }
+            }
+        }
+    }
+    '''
+
+    variables = {
+        "id": id,
+        "filename": filename,
+        "b64jar": b64jar
     }
 
     result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
