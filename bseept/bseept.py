@@ -128,7 +128,11 @@ def main():
     parser_updatesitescanconfig = subparsers.add_parser('updatesitescanconfig', help='Update a site scan configuration')
 
     parser_updatesitescope = subparsers.add_parser('updatesitescope', help='Update a site scope')
-    parser_updatesiteextensions = subparsers.add_parser('updatesiteextensions', help='Update a site extensions')
+
+    parser_updatesiteextensions = subparsers.add_parser('updatesiteextensions', help='Update a site\'s extensions')
+    parser_updatesiteextensions.add_argument('--siteid', help='site ID', required=True)
+    parser_updatesiteextensions.add_argument('--extensionids', help='extension IDs to use', required=True)
+
     parser_createsitelogincredentials = subparsers.add_parser('createsitelogincredentials', help='Create a sites login credentials')
     parser_updatesitelogincredentials = subparsers.add_parser('updatesitelogincredentials', help='Update a sites login credentials')
     parser_deletesitelogincredentials = subparsers.add_parser('deletesitelogincredentials', help='Delete a sites login credentials')
@@ -352,6 +356,9 @@ def main():
 
     if(args.command == "deletescanschedule"):
         bseeptscanschedules.deletescanschedule(apiurl, apikey, args.scanid)
+
+    if(args.command == "updatesiteextensions"):
+        bseeptsites.updatesiteextensions(apiurl, apikey, args.siteid, args.extensionids)
 
     #
     # Folders

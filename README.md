@@ -28,6 +28,7 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Create site via `createsite`
 - [x] Delete site via `deletesite`
 - [x] Rename site via `renamesite`
+- [x] Update site extensions via `updatesiteextensions`
 - [x] Move site via `movesite`
 - [x] Add scan via `addscanschedule`
 - [x] Delete scan schedule via `deletescanschedule`
@@ -52,7 +53,6 @@ This tool is currently work in progress. The following lists track the implement
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
-- [ ] Update site extensions via `updatesiteextensions`
 - [ ] Create site login credentials via`createsitelogincredentials`
 - [ ] Update site login credentials via `updatesitelogincredentials`
 - [ ] Delete site login credentials via `deletesitelogincredentials`

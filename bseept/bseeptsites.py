@@ -36,6 +36,9 @@ def getsites(APIURL,APIKEY,doprint=True, output=False):
                             label
                         }
                     }
+                    extensions {
+                        id
+                    }
                     ephemeral
                     email_recipients{
                         id
@@ -85,6 +88,9 @@ def getsitetree(APIURL,APIKEY, urls=None, parent=1,doprint=True, output=False):
                         recorded_logins {
                             label
                         }
+                    }
+                    extensions {
+                        id
                     }
                     ephemeral
                     email_recipients{
@@ -160,6 +166,10 @@ def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, pro
                 scan_configurations{
                     id
                 }
+                extensions {
+                        id
+                }
+                ephemeral
                 email_recipients {
                     id
                     email
@@ -252,6 +262,72 @@ def renamesite(APIURL,APIKEY, site_id, newname,doprint=True, output=False):
     if(doprint is True):
         print(json.dumps(result))
     if(output is True):
+        return result
+
+
+#
+# Update extensions enabled for a site
+#
+def updatesiteextensions(APIURL, APIKEY, site_id, ids, doprint=True, output=False):
+    query = '''
+    mutation UpdateSiteExtensions($siteid: ID!, $ids: [ID!]) {
+
+        update_site_extensions (
+            input: {
+                id: $siteid
+                extension_ids: $ids
+            } 
+        ) 
+
+        {
+            site {
+                id
+                parent_id
+                scope {
+                    included_urls
+                    protocol_options
+                }
+                application_logins {
+                    login_credentials {
+                        id
+                        label
+                        username
+                    }
+                    recorded_logins {
+                        id
+                        label
+                    }
+                }
+                scan_configurations{
+                    id
+                }
+                extensions {
+                        id
+                }
+                ephemeral
+                email_recipients {
+                    id
+                    email
+                }
+                agent_pool{
+                    id
+                    name
+                    description
+                }
+           }
+        }
+    }'''
+
+    variables = {
+        "siteid": site_id,
+        "ids": ids
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
         return result
 
 
