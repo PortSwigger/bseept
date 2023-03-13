@@ -29,10 +29,13 @@ def getsites(APIURL,APIKEY,doprint=True, output=False):
                     }
                     application_logins {
                         login_credentials {
+                            id
                             label
                             username
+                            password
                         }
                         recorded_logins {
+                            id
                             label
                         }
                     }

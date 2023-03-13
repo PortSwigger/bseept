@@ -137,19 +137,19 @@ def main():
     # site credentials
     #
     parser_createsitelogincredentials = subparsers.add_parser('createsitelogincredentials', help='Create a sites login credentials')
-    parser_createsitelogincredentials.add_argument('--siteid', help='site ID', required=True)
+    parser_createsitelogincredentials.add_argument('--siteid', help='site ID from --getsites', required=True)
     parser_createsitelogincredentials.add_argument('--label', help='descriptive name', required=True)
     parser_createsitelogincredentials.add_argument('--username', help='username', required=True)
     parser_createsitelogincredentials.add_argument('--password', help='password', required=True)
 
     parser_updatesitelogincredentials = subparsers.add_parser('updatesitelogincredentials', help='Update a sites login credentials')
-    parser_updatesitelogincredentials.add_argument('--credid', help='site ID', required=True)
+    parser_updatesitelogincredentials.add_argument('--credid', help='credential ID from --getsites', required=True)
     parser_updatesitelogincredentials.add_argument('--label', help='descriptive name', required=True)
     parser_updatesitelogincredentials.add_argument('--username', help='username', required=True)
     parser_updatesitelogincredentials.add_argument('--password', help='password', required=True)
 
     parser_deletesitelogincredentials = subparsers.add_parser('deletesitelogincredentials', help='Delete a sites login credentials')
-    parser_deletesitelogincredentials.add_argument('--credid', help='site ID', required=True)
+    parser_deletesitelogincredentials.add_argument('--credid', help='credential ID from --getsites', required=True)
 
     parser_createsiterecordedlogincredentials = subparsers.add_parser('createsiterecordedlogincredentials', help='Create a sites recorded login credentials')
     parser_updatesiterecordedlogincredentials = subparsers.add_parser('updatesiterecordedlogincredentials', help='Update a sites recorded login credentials')
@@ -501,8 +501,8 @@ def main():
     if (args.command == "updatesitelogincredentials"):
         bseeptcredentials.updatesitelogincred(apiurl, apikey, args.credid, args.label, args.username, args.password)
 
-    if (args.command == "deletelogincredentials"):
-        bseeptcredentials.updatesitelogincred(apiurl, apikey, args.credid)
+    if (args.command == "deletesitelogincredentials"):
+        bseeptcredentials.deletesitelogincred(apiurl, apikey, args.credid)
 
 
 # Entry point

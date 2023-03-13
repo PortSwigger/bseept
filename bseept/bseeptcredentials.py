@@ -17,7 +17,7 @@ def createsitelogincred(APIURL, APIKEY, id, label, username, password, doprint=T
         create_site_login_credential(
             input: {
                 site_id: $id
-                login_credential {
+                login_credential: {
                     label: $label
                     username: $username
                     password: $password
@@ -27,7 +27,7 @@ def createsitelogincred(APIURL, APIKEY, id, label, username, password, doprint=T
         )
 
         {
-            login_credentials {
+            login_credential {
                 id
                 label
                 username
@@ -59,21 +59,20 @@ def updatesitelogincred(APIURL, APIKEY, id, label, username, password, doprint=T
      mutation UpdateSiteLoginCredential($id: ID!, $label: String!, $username: String!, $password: String!) {
         update_site_login_credential(
             input: {
-                login_credential {
-                    id: $id
-                    label: $label
-                    username: $username
-                    password: $password
-                }
+                id: $id
+                label: $label
+                username: $username
+                password: $password
             }
 
         )
 
         {
-            login_credentials {
+            login_credential {
                 id
                 label
                 username
+                password
             }
         }
     }
