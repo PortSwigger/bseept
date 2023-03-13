@@ -208,7 +208,7 @@ def createsite(APIURL,APIKEY, name, urls, parent_id, scan_configuration_ids, pro
 #
 # Delete a site
 #
-def deletesite(APIURL,APIKEY, site_id,print=True, output=False):
+def deletesite(APIURL,APIKEY, site_id,doprint=True, output=False):
  
     query = '''
     mutation DeleteSite($siteid: ID!) {
