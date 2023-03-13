@@ -58,6 +58,12 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Create site login credentials via`createsitelogincredentials`
 - [ ] Update site login credentials via `updatesitelogincredentials`
 - [ ] Delete site login credentials via `deletesitelogincredentials`
+- [ ] Create site recorded login credentials via`createsiterecordedlogincredentials`
+- [ ] Update site recorded login credentials via `updatesiterecordedlogincredentials`
+- [ ] Delete site recorded login credentials via `deletesiterecordedlogincredentials`
+- [ ] Create site email receipient via`createsiteemailreceipient`
+- [ ] Update site email receipient via `updatesiteemailreceipient`
+- [ ] Delete site email receipient via `deletesiteemailreceipient`
 - [ ] Delete scan config via `deletescanconfig`
 - [ ] Authorize agent via `authorizeagent`
 - [ ] Deauthorize agent via `deauthorizeagent`
