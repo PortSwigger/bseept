@@ -96,35 +96,6 @@ def getscans(APIURL,APIKEY,doprint=True, output=False):
         return result
 
 #
-# System wide scan configurations
-#
-def getscanconfigs(APIURL, APIKEY,doprint=True, output=False):
-
-    # scan_configurations(): [ScanConfiguration!]
-
-    query = '''
-    query GetScanConfigurations{
-        scan_configurations {
-            id
-            name
-            built_in
-            scan_configuration_fragment_json
-            last_modified_time
-            last_modified_by{
-                username
-            }
-        }
-    }
-    '''
-
-    result = bseeptgraphql.dographql(APIURL, APIKEY, query, None)
-
-    if(doprint is True):
-        print(json.dumps(result))
-    if(output is True):
-        return result
-
-#
 # Issues for a specified scan
 #
 def getscanissues(APIURL, APIKEY, scan_id,doprint=True, output=False):

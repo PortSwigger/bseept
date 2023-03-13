@@ -317,7 +317,7 @@ def main():
         bseeptscans.getscanreportxml(apiurl, apikey, args.getscanreportxml, True)
 
     if(args.getscanconfigs is True):
-        bseeptscans.getscanconfigs(apiurl, apikey)
+        bseeptscanconfigs.getscanconfigs(apiurl, apikey)
 
     if(args.getagents is True):
         bseeptagents.getagents(apiurl,apikey)
