@@ -258,13 +258,58 @@ def deleteextension(APIURL, APIKEY, id, doprint=True, output=False):
         return result
 
 #
-# Update a custom (none BApp) extension - assumes b64jar contains the BASE64 encoded blob
+# Upload a custom BApp extension - assumes b64jar contains the BASE64 encoded blob
 #
 def uploadbapp(APIURL, APIKEY, filename, b64jar, doprint=True, output=False):
     query = '''
 
      mutation UploadBapp($filename: String!, $b64jar: String!) {
         upload_bapp (
+            input: {
+                extension_filename: $filename
+                extension_file_as_base_64: $b64jar
+            }
+
+        )
+
+        {
+            extension {
+                id
+                uploaded_filename
+                name
+                description
+                uploaded_date
+                uploaded_by
+                bapp_details{
+                    bapp_uuid
+                    author
+                    version
+                }
+            }
+        }
+    }
+    '''
+
+    variables = {
+        "filename": filename,
+        "b64jar": b64jar
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
+
+#
+# Update a custom (none BApp) extension - assumes b64jar contains the BASE64 encoded blob
+#
+def getbappdetails(APIURL, APIKEY, filename, b64jar, doprint=True, output=False):
+    query = '''
+
+     mutation GetBappDetails($filename: String!, $b64jar: String!) {
+        get_bapp_details(
             input: {
                 extension_filename: $filename
                 extension_file_as_base_64: $b64jar

@@ -50,6 +50,7 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Update extension JAR via `updateextensionjar`
 - [x] Delete extension via `deleteextension`
 - [x] Upload BApp via `uploadbapp`
+- [x] Get BApp details via `getbappdetails`
 
 ### To Do
 - [ ] Update scan config via `updatescanconfig`
@@ -59,7 +60,6 @@ This tool is currently work in progress. The following lists track the implement
 - [ ] Create scan config via `createscanconfig`
 - [ ] Update scan config via `updatescanconfig`
 - [ ] Delete scan config via `deletescanconfig`
-- [ ] Get BApp details via `getbappdetails`
 - [ ] Authorize agent via `authorizeagent`
 - [ ] Deauthorize agent via `deauthorizeagent`
 - [ ] Move agent pool via `moveagentpool`
