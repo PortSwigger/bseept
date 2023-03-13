@@ -161,7 +161,7 @@ def main():
 
     # BApps
     parser_uploadbapp = subparsers.add_parser('uploadbapp', help='Upload a BApp')
-    parser_getbappdetails = subparsers.add_parser('getbappdetails', help='Get BApp details without adding it to thelist of usable extensions')
+    parser_getbappdetails = subparsers.add_parser('getbappdetails', help='Get BApp details without adding it to the list of usable extensions - this uploads and parses the BApp')
 
     # extensions
     parser_uploadextension = subparsers.add_parser('uploadextension', help='Upload a custom extension')
