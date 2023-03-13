@@ -26,6 +26,7 @@
 import os
 import sys
 import argparse # command line processing
+import base64 # for encoding JAR files
 
 # BSEE client library elements
 import bseeptfolders
@@ -165,6 +166,10 @@ def main():
 
     # extensions
     parser_uploadextension = subparsers.add_parser('uploadextension', help='Upload a custom extension')
+    parser_uploadextension.add_argument('--filename', help='extension filename', required=True)
+    parser_uploadextension.add_argument('--name', help='extension name', required=True)
+    parser_uploadextension.add_argument('--description', help='extension description', required=True)
+    parser_uploadextension.add_argument('--localjarname', help='path to local JAR', required=True)
 
     parser_updateextensionname = subparsers.add_parser('updateextensionname', help='Update a custom extension name')
     parser_updateextensionname.add_argument('--extid', help='extension ID returned from --getextensions', required=True)
@@ -377,13 +382,26 @@ def main():
     if(args.command == "deleteagentpool"):
         bseeptagents.deletepool(apiurl,apikey, args.poolid)
 
-
+    #
     # Extensions
     if(args.command == "updateextensionname"):
         bseeptextensions.updateextensionname(apiurl,apikey, args.extid, args.jarname)
 
     if(args.command == "updateextensiondescription"):
         bseeptextensions.updateextensiondescription(apiurl,apikey, args.extid, args.description)
+
+    if(args.command == "uploadextension"):
+
+        try:
+            with open(args.localjarname, "rb") as jar_file:
+                b64jar = base64.b64encode(jar_file.read())
+
+        except Exception as inst:
+            print("[!] Error whilst processing JAR file")
+            return
+
+        bseeptextensions.uploadcustomeextension(apiurl, apikey, args.filename, b64jar.decode('utf-8'), args.name, args.description)
+
 
 # Entry point
 if __name__ == '__main__':
