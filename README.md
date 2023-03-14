@@ -66,9 +66,9 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Deauthorize agent via `deauthorizeagent`
 - [x] Move agent pool via `moveagentpool`
 - [x] Assign site to agent pool via `assignsitetogentpool`
-
-### To Do 
-- [ ] Update site scan config via `updatesitescanconfig`
+- [x] Update site scan config via `updatesitescanconfig`
+- 
+### To Do
 - [ ] Update site scope via `updatesitescope`
 
 ## Authentication Configuration

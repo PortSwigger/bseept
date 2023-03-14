@@ -127,6 +127,8 @@ def main():
     parser_movesite.add_argument('--newparentfolderid', help='new parent folder ID', required=True)
 
     parser_updatesitescanconfig = subparsers.add_parser('updatesitescanconfig', help='Update a site scan configuration')
+    parser_updatesitescanconfig.add_argument('--siteid', help='site ID', required=True)
+    parser_updatesitescanconfig.add_argument('--scanconfigids', help='new scan configuration IDs to use', required=True)
 
     parser_updatesitescope = subparsers.add_parser('updatesitescope', help='Update a site scope')
 
@@ -436,6 +438,9 @@ def main():
 
     if(args.command == "assignsitestoagentpool"):
         bseeptsites.assignsitestoagentpool(apiurl,apikey,args.siteids, args.agentpoolid)
+
+    if(args.command == "updatesitescanconfig"):
+        bseeptsites.updatesitescanconfiguration(apiurl,apikey,args.siteid, args.scanconfigids)
 
     #
     # Folders

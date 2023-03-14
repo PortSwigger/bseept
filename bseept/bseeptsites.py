@@ -377,5 +377,45 @@ def assignsitestoagentpool(APIURL, APIKEY, site_ids, agentpoolid, doprint=True, 
     if (output is True):
         return result
 
+#
+# Update site scan configuration
+#
+def updatesitescanconfiguration(APIURL, APIKEY, site_id, scanconfigids, doprint=True, output=False):
+
+    query = '''
+    mutation UpdateSiteScanConfigurations($siteid: ID!, $scanconfigids: [ID!]) {
+
+        update_site_scan_configurations(
+            input: {
+                id : $siteid
+                scan_configuration_ids: $scanconfigids
+            } 
+        ) 
+
+        {
+            site {
+                id
+                name
+                scan_configurations {
+                    id
+                }
+           }
+        }
+    }'''
+
+    variables = {
+        "siteid": site_id,
+        "scanconfigids": scanconfigids
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
+
+
+
 
 
