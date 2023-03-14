@@ -59,11 +59,11 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Delete site login credentials via `deletesitelogincredentials`
 - [x] Create site recorded login credentials via`createsiterecordedlogin`
 - [x] Delete site recorded login credentials via `deletesiterecordedlogin`
+- [x] Create site email receipient via`createsiteemailreceipient`
+- [x] Update site email receipient via `updatesiteemailreceipient`
+- [x] Delete site email receipient via `deletesiteemailreceipient`
 
 ### To Do
-- [ ] Create site email receipient via`createsiteemailreceipient`
-- [ ] Update site email receipient via `updatesiteemailreceipient`
-- [ ] Delete site email receipient via `deletesiteemailreceipient`
 - [ ] Authorize agent via `authorizeagent`
 - [ ] Deauthorize agent via `deauthorizeagent`
 - [ ] Move agent pool via `moveagentpool`

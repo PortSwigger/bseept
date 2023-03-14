@@ -34,6 +34,7 @@ import bseeptagentpools
 import bseeptagents
 import bseeptbapps
 import bseeptcredentials
+import bseeptemailrecipients
 import bseeptevents
 import bseeptextensions
 import bseeptfolders
@@ -134,7 +135,7 @@ def main():
     parser_updatesiteextensions.add_argument('--extensionids', help='extension IDs to use', required=True)
 
     #
-    # site credentials
+    # Site credentials
     #
     parser_createsitelogincredentials = subparsers.add_parser('createsitelogincredentials', help='Create a sites login credentials')
     parser_createsitelogincredentials.add_argument('--siteid', help='site ID from --getsites', required=True)
@@ -160,7 +161,21 @@ def main():
     parser_deletesiterecordedlogincredentials.add_argument('--rlid', help='recorded login ID from --getsites', required=True)
 
     #
-    # scans schedules
+    # Site email recipients
+    #
+    parser_createsitelogincredentials = subparsers.add_parser('createsiteemailreceipient', help='Create a site email receipient for reporting')
+    parser_createsitelogincredentials.add_argument('--siteid', help='site ID from --getsites', required=True)
+    parser_createsitelogincredentials.add_argument('--email', help='e-mail address', required=True)
+
+    parser_updatesitelogincredentials = subparsers.add_parser('updatesiteemailreceipient', help='Update a site email receipient for reporting')
+    parser_updatesitelogincredentials.add_argument('--emailid', help='e-mail receipient ID from --getsites', required=True)
+    parser_updatesitelogincredentials.add_argument('--email', help='e-mail address', required=True)
+
+    parser_deletesitelogincredentials = subparsers.add_parser('deletesiteemailreceipient', help='Delete a site email receipient for reporting')
+    parser_deletesitelogincredentials.add_argument('--emailid', help='e-mail receipient ID from --getsites', required=True)
+
+    #
+    # Scan schedules
     #
     parser_addscan = subparsers.add_parser('addscanschedule', help='Add a scan schedule')
     parser_addscan.add_argument('--siteid', help='site ID returned from createsite, --getsites or --getsitetree', required=True)
@@ -178,7 +193,9 @@ def main():
     parser_deletescansschedule = subparsers.add_parser('deletescanschedule', help='Delete a scan')
     parser_deletescansschedule.add_argument('--scanid', help='scanid ID returned from addscanschedule or --getschedules', required=True)
 
+    #
     # scan configurations
+    #
     parser_createscanconfig = subparsers.add_parser('createscanconfig', help='Create a scan configuration')
     parser_createscanconfig.add_argument('--name', help='scan configuration name', required=True)
     parser_createscanconfig.add_argument('--jsonconfig', help='escaped JSON configuration fragment', required=True)
@@ -191,7 +208,9 @@ def main():
     parser_deletescanconfig = subparsers.add_parser('deletescanconfig', help='Delete a scan configuration')
     parser_deletescanconfig.add_argument('--scanconfigid', help='scan configuration ID returned from --createscanconfig or --getscanconfigs', required=True)
 
+    #
     # BApps
+    #
     parser_uploadbapp = subparsers.add_parser('uploadbapp', help='Upload a BApp')
     parser_uploadbapp.add_argument('--filename', help='extension filename', required=True)
     parser_uploadbapp.add_argument('--localjarname', help='path to local JAR', required=True)
@@ -200,7 +219,9 @@ def main():
     parser_getbappdetails.add_argument('--filename', help='extension filename', required=True)
     parser_getbappdetails.add_argument('--localjarname', help='path to local JAR', required=True)
 
-    # extensions
+    #
+    # Extensions
+    #
     parser_uploadextension = subparsers.add_parser('uploadextension', help='Upload a custom extension')
     parser_uploadextension.add_argument('--filename', help='extension filename', required=True)
     parser_uploadextension.add_argument('--name', help='extension name', required=True)
@@ -223,7 +244,9 @@ def main():
     parser_deleteextension = subparsers.add_parser('deleteextension', help='Delete a custom extension or BApp')
     parser_deleteextension.add_argument('--extid', help='extension ID returned from --getextensions', required=True)
 
-    # agents 
+    #
+    # Agents
+    #
     parser_authorizeagent = subparsers.add_parser('authorizeagent', help='Authorize a new agent to be able to run scans')
     parser_deauthorizeagent = subparsers.add_parser('deauthorizeagent', help='Deauthorize an existing agent from running scans')
 
@@ -241,7 +264,9 @@ def main():
     parser_updateagentmaxconcurrentscans.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
     parser_updateagentmaxconcurrentscans.add_argument('--concurrentscans', help='number of concurrent scans for this agent', required=True)
 
-    # agent pools
+    #
+    # Agent pools
+    #
     parser_createagentpool = subparsers.add_parser('createagentpool', help='Create an agent pool')
     parser_createagentpool.add_argument('--name', help='name of the agent pool', required=True)
     parser_createagentpool.add_argument('--description', help='description of the agent pool', required=True)
@@ -258,7 +283,9 @@ def main():
 
     parser_assignsitetogentpool = subparsers.add_parser('assignsitetogentpool', help='Assign sites to an agent pool')
 
-    # folders
+    #
+    # Folders
+    #
     parser_createfolder = subparsers.add_parser('createfolder', help='Create a folder')
     parser_createfolder.add_argument('--parentfolderid', help='folder ID returned from createfolder or --getfolders', required=True)
     parser_createfolder.add_argument('--name', help='name of the folder', required=True)
@@ -274,11 +301,14 @@ def main():
     parser_movefolder.add_argument('--folderid', help='folder ID returned from createfolder or --getfolders', required=True)
     parser_movefolder.add_argument('--parentfolderid', help='new parent folder ID returned from createfolder or --getfolders', required=True)
 
-    # credentials
-
-
-    # issues
+    #
+    # Issues
+    #
     parser_updatefalsepositive = subparsers.add_parser('updatefalsepositive', help='Update the false positive for an issue')
+
+###################################
+# now parse
+###################################
 
     args = parser.parse_args()
 
@@ -320,6 +350,13 @@ def main():
         else:
             apikey = args.apikey
 
+###################################
+# logic to deal with command line options and invoke the relevant functions
+###################################
+
+    #
+    # GraphQL queries i.e. read operations
+    #
 
     # We don't do if/else here as we may want various commands
     if(args.getsites is True):
@@ -362,7 +399,7 @@ def main():
         bseeptagents.getunauthorisedagents(apiurl,apikey)
 
     #
-    # Mutations
+    # GraphQL Mutations i.e. write operations
     #
 
     #
@@ -514,6 +551,17 @@ def main():
 
     if (args.command == "deletesiterecordedlogin"):
         bseeptcredentials.deletesiterecordedlogin(apiurl, apikey, args.rlid)
+
+    #
+    # Site email recipients
+    if (args.command == "createsiteemailreceipient"):
+        bseeptemailrecipients.createsiteemailreceipient(apiurl, apikey, args.siteid, args.email)
+
+    if(args.command == "updatesiteemailreceipient"):
+        bseeptemailrecipients.updatesiteemailreceipient(apiurl,apikey, args.emailid, args.email)
+
+    if(args.command == "deletesiteemailreceipient"):
+        bseeptemailrecipients.deletesiteemailreceipient(apiurl, apikey, args.emailid)
 
 
 # Entry point
