@@ -57,11 +57,10 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Create site login credentials via`createsitelogincredentials`
 - [x] Update site login credentials via `createsitelogincredentials`
 - [x] Delete site login credentials via `deletesitelogincredentials`
+- [x] Create site recorded login credentials via`createsiterecordedlogin`
+- [x] Delete site recorded login credentials via `deletesiterecordedlogin`
 
 ### To Do
-- [ ] Create site recorded login credentials via`createsiterecordedlogincredentials`
-- [ ] Update site recorded login credentials via `updatesiterecordedlogincredentials`
-- [ ] Delete site recorded login credentials via `deletesiterecordedlogincredentials`
 - [ ] Create site email receipient via`createsiteemailreceipient`
 - [ ] Update site email receipient via `updatesiteemailreceipient`
 - [ ] Delete site email receipient via `deletesiteemailreceipient`

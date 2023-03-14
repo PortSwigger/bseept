@@ -151,10 +151,14 @@ def main():
     parser_deletesitelogincredentials = subparsers.add_parser('deletesitelogincredentials', help='Delete a sites login credentials')
     parser_deletesitelogincredentials.add_argument('--credid', help='credential ID from --getsites', required=True)
 
-    parser_createsiterecordedlogincredentials = subparsers.add_parser('createsiterecordedlogincredentials', help='Create a sites recorded login credentials')
-    parser_updatesiterecordedlogincredentials = subparsers.add_parser('updatesiterecordedlogincredentials', help='Update a sites recorded login credentials')
-    parser_deletesiterecordedlogincredentials = subparsers.add_parser('deletesiterecordedlogincredentials', help='Delete a sites recorded login credentials')
-    
+    parser_createsiterecordedlogincredentials = subparsers.add_parser('createsiterecordedlogin', help='Create a sites recorded login credentials')
+    parser_createsiterecordedlogincredentials.add_argument('--siteid', help='site ID from --getsites', required=True)
+    parser_createsiterecordedlogincredentials.add_argument('--label', help='descriptive name', required=True)
+    parser_createsiterecordedlogincredentials.add_argument('--script', help='recorded login script', required=True)
+
+    parser_deletesiterecordedlogincredentials = subparsers.add_parser('deletesiterecordedlogin', help='Delete a sites recorded login credentials')
+    parser_deletesiterecordedlogincredentials.add_argument('--rlid', help='recorded login ID from --getsites', required=True)
+
     #
     # scans schedules
     #
@@ -495,6 +499,7 @@ def main():
 
     #
     # Site credentials
+
     if(args.command == "createsitelogincredentials"):
         bseeptcredentials.createsitelogincred(apiurl, apikey, args.siteid, args.label, args.username, args.password)
 
@@ -503,6 +508,12 @@ def main():
 
     if (args.command == "deletesitelogincredentials"):
         bseeptcredentials.deletesitelogincred(apiurl, apikey, args.credid)
+
+    if (args.command == "createsiterecordedlogin"):
+       bseeptcredentials.createsiterecordedlogin(apiurl, apikey, args.siteid, args.label, args.script)
+
+    if (args.command == "deletesiterecordedlogin"):
+        bseeptcredentials.deletesiterecordedlogin(apiurl, apikey, args.rlid)
 
 
 # Entry point

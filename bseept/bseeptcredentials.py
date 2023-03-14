@@ -121,3 +121,76 @@ def deletesitelogincred(APIURL, APIKEY, id, doprint=True, output=False):
         print(json.dumps(result))
     if (output is True):
         return result
+
+
+#
+# Create a site recorded login credential
+#
+def createsiterecordedlogin(APIURL, APIKEY, id, label, script, doprint=True, output=False):
+    query = '''
+
+     mutation CreateSiteRecordedLogin($id: ID!, $label: String!, $script: String!) {
+        create_site_recorded_login(
+            input: {
+                site_id: $id
+                recorded_login: {
+                    label: $label
+                    script: $script
+                }
+            }
+
+        )
+
+        {
+            recorded_login {
+                id
+                label
+                script
+            }
+        }
+    }
+    '''
+
+    variables = {
+        "id": id,
+        "label": label,
+        "script": script
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
+
+#
+# Delete a site recorded login credential
+#
+def deletesiterecordedlogin(APIURL, APIKEY, id, doprint=True, output=False):
+
+    query = '''
+
+     mutation DeleteSiteRecordedLogin($id: ID!) {
+        delete_site_recorded_login(
+            input: {
+                id: $id
+            }
+        )
+
+        {
+            id
+        }
+    }
+    '''
+
+    variables = {
+        "id": id
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
