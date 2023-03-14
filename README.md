@@ -199,7 +199,7 @@ The following are example uses cases.
  
  ### Creating a scan from a site and parse the response via jq to prettyfi
  ```
-> py bseept.py addscanschedule --siteid 1 --initialruntime 2024-08-19T11:07:25.664Z --schedule FREQ=DAILY;INTERVAL=2 --scanconfigurationids ba4f8ce0-af9a-4450-ad35-78f083375088 | c:\data\utils\jq
+> py bseept.py addscanschedule --siteid 44 --initialruntime 2024-08-19T11:07:25.664Z --schedule "FREQ=DAILY;INTERVAL=2" --scanconfigurationids ba4f8ce0-af9a-4450-ad35-78f083375088 8f7c2d95-0a72-40ce-a186-777348720870 | jq
 {
   "data": {
     "create_schedule_item": {
