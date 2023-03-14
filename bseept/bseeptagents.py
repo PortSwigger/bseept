@@ -9,7 +9,7 @@ import json
 
 
 #
-# Get the currenly unauthorised agents
+# Get the currently unauthorised agents
 def getunauthorisedagents(APIURL,APIKEY,doprint=True, output=False):
     
     query = '''
@@ -290,4 +290,74 @@ def deletepool (APIURL,APIKEY,id, doprint=True, output=False):
     if(doprint is True):
         print(json.dumps(result))
     if(output is True):
+        return result
+
+
+#
+# Authorize a specific agent
+#
+def authorizeagent(APIURL, APIKEY, id, agentpool, doprint=True, output=False):
+    query = '''
+
+     mutation AuthorizeAgent($id: ID!, $agentpool: ID) {
+        authorize_agent (
+            input: {
+                machine_id: $id
+                agent_pool_id: $agentpool
+            }
+
+        )
+
+        {
+            agent {
+                id
+                name
+                machine_id
+                ip
+            }
+        }
+    }
+    '''
+
+    variables = {
+        "id": id,
+        "agentpool": agentpool
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
+
+#
+# Deauthorize a specific agent
+#
+def deauthorizeagent(APIURL, APIKEY, id, doprint=True, output=False):
+
+    query = '''
+
+     mutation DeauthorizeAgent($id: ID!) {
+        deauthorize_agent (
+            input: {
+                id: $id
+            }
+        )
+
+        {
+            id
+        }
+    }
+    '''
+
+    variables = {
+        "id": id
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
         return result

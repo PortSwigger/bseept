@@ -248,7 +248,11 @@ def main():
     # Agents
     #
     parser_authorizeagent = subparsers.add_parser('authorizeagent', help='Authorize a new agent to be able to run scans')
+    parser_authorizeagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
+    parser_authorizeagent.add_argument('--agentpool', help='agent pool ID returned from createagentpool or --getagentpools', required=True)
+
     parser_deauthorizeagent = subparsers.add_parser('deauthorizeagent', help='Deauthorize an existing agent from running scans')
+    parser_deauthorizeagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
 
     parser_renameagent = subparsers.add_parser('renameagent', help='Rename an existing agent')
     parser_renameagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
@@ -462,6 +466,12 @@ def main():
 
     if(args.command == "deleteagentpool"):
         bseeptagents.deletepool(apiurl,apikey, args.poolid)
+
+    if(args.command == "authorizeagent"):
+        bseeptagents.authorizeagent(apiurl, apikey, args.agentid, args.agentpool)
+
+    if(args.command == "deauthorizeagent"):
+        bseeptagents.deauthorizeagent(apiurl, apikey, args.agentid)
 
     #
     # Extensions

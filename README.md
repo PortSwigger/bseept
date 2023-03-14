@@ -62,10 +62,10 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Create site email receipient via`createsiteemailreceipient`
 - [x] Update site email receipient via `updatesiteemailreceipient`
 - [x] Delete site email receipient via `deletesiteemailreceipient`
+- [x] Authorize agent via `authorizeagent`
+- [x] Deauthorize agent via `deauthorizeagent`
 
 ### To Do
-- [ ] Authorize agent via `authorizeagent`
-- [ ] Deauthorize agent via `deauthorizeagent`
 - [ ] Move agent pool via `moveagentpool`
 - [ ] Assign site to agent pool via `assignsitetogentpool`
 - [ ] Update site scan config via `updatesitescanconfig`
