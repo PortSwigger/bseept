@@ -64,9 +64,9 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Delete site email receipient via `deletesiteemailreceipient`
 - [x] Authorize agent via `authorizeagent`
 - [x] Deauthorize agent via `deauthorizeagent`
+- [x] Move agent pool via `moveagentpool`
 
 ### To Do
-- [ ] Move agent pool via `moveagentpool`
 - [ ] Assign site to agent pool via `assignsitetogentpool`
 - [ ] Update site scan config via `updatesitescanconfig`
 - [ ] Update site scope via `updatesitescope`

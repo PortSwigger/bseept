@@ -249,7 +249,7 @@ def main():
     #
     parser_authorizeagent = subparsers.add_parser('authorizeagent', help='Authorize a new agent to be able to run scans')
     parser_authorizeagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
-    parser_authorizeagent.add_argument('--agentpool', help='agent pool ID returned from createagentpool or --getagentpools', required=True)
+    parser_authorizeagent.add_argument('--agentpoolid', help='agent pool ID returned from createagentpool or --getagentpools', required=True)
 
     parser_deauthorizeagent = subparsers.add_parser('deauthorizeagent', help='Deauthorize an existing agent from running scans')
     parser_deauthorizeagent.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
@@ -281,6 +281,8 @@ def main():
     parser_updateagentpool.add_argument('--description', help='description of the agent pool', required=True)
 
     parser_moveagentpool = subparsers.add_parser('moveagentpool', help='Move an agent pool')
+    parser_moveagentpool.add_argument('--agentid', help='agent ID returned from createagent or --getagents', required=True)
+    parser_moveagentpool.add_argument('--agentpoolid', help='agent pool ID returned from createagentpool or --getagentpools', required=True)
 
     parser_deleteagentpool = subparsers.add_parser('deleteagentpool', help='Delete an agent pool')
     parser_deleteagentpool.add_argument('--poolid', help='ID of the agent pool', required=True)
@@ -468,10 +470,13 @@ def main():
         bseeptagents.deletepool(apiurl,apikey, args.poolid)
 
     if(args.command == "authorizeagent"):
-        bseeptagents.authorizeagent(apiurl, apikey, args.agentid, args.agentpool)
+        bseeptagents.authorizeagent(apiurl, apikey, args.agentid, args.agentpoolid)
 
     if(args.command == "deauthorizeagent"):
         bseeptagents.deauthorizeagent(apiurl, apikey, args.agentid)
+
+    if(args.command == "moveagentpool"):
+        bseeptagents.moveagentpool(apiurl, apikey, args.agentid, args.agentpoolid)
 
     #
     # Extensions

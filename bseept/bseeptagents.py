@@ -361,3 +361,45 @@ def deauthorizeagent(APIURL, APIKEY, id, doprint=True, output=False):
         print(json.dumps(result))
     if (output is True):
         return result
+
+#
+# Move agent from its current pool to a new one
+#
+def moveagentpool(APIURL, APIKEY, id, agentpool, doprint=True, output=False):
+    query = '''
+
+     mutation MoveAgentPool($id: ID!, $agentpool: ID!) {
+        move_agent_pool(
+            input: {
+                agent_id: $id
+                agent_pool_id: $agentpool
+            }
+
+        )
+
+        {
+            agent {
+                id
+                name
+                machine_id
+                ip
+                agent_pool { 
+                    id
+                    name
+                }
+            }
+        }
+    }
+    '''
+
+    variables = {
+        "id": id,
+        "agentpool": agentpool
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
