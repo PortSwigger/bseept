@@ -113,7 +113,7 @@ def main():
     parser_createsite.add_argument('--siteurls', nargs='+', help='site URLs', required=True)
     parser_createsite.add_argument('--parentfolderid', help='parent folder ID in site tree otherwise defaults to 0', default="0")
     parser_createsite.add_argument('--protocoloptions', help='which protocols are used when scanning the sites URLs', default='USE_SPECIFIED_PROTOCOLS', choices=['USE_SPECIFIED_PROTOCOLS', 'USE_HTTP_AND_HTTPS'])
-    parser_createsite.add_argument('--scanconfigurationids', help='scan configuration IDs to use', required=True)
+    parser_createsite.add_argument('--scanconfigurationids', nargs='+', help='scan configuration IDs to use', required=True)
 
     parser_deletesite = subparsers.add_parser('deletesite', help='Delete a site')
     parser_deletesite.add_argument('--siteid', help='site ID', required=True)
@@ -128,7 +128,7 @@ def main():
 
     parser_updatesitescanconfig = subparsers.add_parser('updatesitescanconfig', help='Update a site scan configuration')
     parser_updatesitescanconfig.add_argument('--siteid', help='site ID', required=True)
-    parser_updatesitescanconfig.add_argument('--scanconfigids', help='new scan configuration IDs to use', required=True)
+    parser_updatesitescanconfig.add_argument('--scanconfigids', nargs='+', help='new scan configuration IDs to use', required=True)
 
     parser_updatesitescope = subparsers.add_parser('updatesitescope', help='Update a site scope')
     parser_updatesitescope.add_argument('--siteid', help='site ID', required=True)
@@ -138,7 +138,7 @@ def main():
 
     parser_updatesiteextensions = subparsers.add_parser('updatesiteextensions', help='Update a site\'s extensions')
     parser_updatesiteextensions.add_argument('--siteid', help='site ID', required=True)
-    parser_updatesiteextensions.add_argument('--extensionids', help='extension IDs to use', required=True)
+    parser_updatesiteextensions.add_argument('--extensionids', nargs='+', help='extension IDs to use', required=True)
 
     #
     # Site credentials
@@ -187,14 +187,14 @@ def main():
     parser_addscan.add_argument('--siteid', help='site ID returned from createsite, --getsites or --getsitetree', required=True)
     parser_addscan.add_argument('--initialruntime', help='initial run time e.g. 2024-08-19T11:07:25.664Z', required=True)
     parser_addscan.add_argument('--schedule', help='fequency of scan run beyond initial run in RRULE format decribed in RFC5545, RFC5546, and RFC5547.', required=True)
-    parser_addscan.add_argument('--scanconfigurationids', help='scan configuration IDs to use', required=True)
+    parser_addscan.add_argument('--scanconfigurationids', nargs='+', help='scan configuration IDs to use', required=True)
 
     parser_updatescanschedule = subparsers.add_parser('updatescanschedule', help='Update a scan schedule')
     parser_updatescanschedule.add_argument('--scanid', help='scan ID returned from addscanedule or --getschedule', required=True)
     parser_updatescanschedule.add_argument('--siteid', help='site ID returned from createsite, --getsites or --getsitetree', required=True)
     parser_updatescanschedule.add_argument('--initialruntime', help='initial run time e.g. 2024-08-19T11:07:25.664Z', required=True)
     parser_updatescanschedule.add_argument('--schedule', help='fequency of scan run beyond initial run in RRULE format decribed in RFC5545, RFC5546, and RFC5547.', required=True)
-    parser_updatescanschedule.add_argument('--scanconfigurationids', help='scan configuration IDs to use', required=True)
+    parser_updatescanschedule.add_argument('--scanconfigurationids', nargs='+', help='scan configuration IDs to use', required=True)
 
     parser_deletescansschedule = subparsers.add_parser('deletescanschedule', help='Delete a scan')
     parser_deletescansschedule.add_argument('--scanid', help='scanid ID returned from addscanschedule or --getschedules', required=True)
@@ -294,7 +294,7 @@ def main():
     parser_deleteagentpool.add_argument('--poolid', help='ID of the agent pool', required=True)
 
     parser_assignsitestogentpool = subparsers.add_parser('assignsitestoagentpool', help='Assign sites to an agent pool')
-    parser_assignsitestogentpool.add_argument('--siteids', help='site IDs to assign to pool', required=True)
+    parser_assignsitestogentpool.add_argument('--siteids', nargs='+', help='site IDs to assign to pool', required=True)
     parser_assignsitestogentpool.add_argument('--agentpoolid', help='agent pool ID returned from createagentpool or --getagentpools', required=True)
 
     #

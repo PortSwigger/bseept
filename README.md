@@ -292,6 +292,51 @@ The following are example uses cases.
 {"data": {"delete_schedule_item": {"id": "25"}}}
 ```
 
+ ## Update a sites scope and parse the response through jq
+ ```
+ > py bseept.py --url updatesitescope --siteid 55 --includedurls https://ginandjuice.shop https://www.binaryfirefly.com --excludedurls "https://portswigger.net" | jq 
+{
+  "data": {
+    "update_site_scope": {
+      "scope": {
+        "included_urls": [
+          "https://ginandjuice.shop",
+          "https://www.binaryfirefly.com"
+        ],
+        "excluded_urls": [
+          "https://portswigger.net"
+        ],
+        "protocol_options": "USE_SPECIFIED_PROTOCOLS"
+      }
+    }
+  }
+}
+ ```
+
+ ## Update a sites scan configuration IDs to use and parse the response through jq
+ ```
+ > py bseept.py updatesitescanconfig --siteid 44 --scanconfigids 8f7c2d95-0a72-40ce-a186-777348720870 a6d11dcd-d3e7-424a-b8c4-90bf28b5785d | jq
+{
+  "data": {
+    "update_site_scan_configurations": {
+      "site": {
+        "id": "44",
+        "name": "thisis33ate4333st33324",
+        "scan_configurations": [
+          {
+            "id": "8f7c2d95-0a72-40ce-a186-777348720870"
+          },
+          {
+            "id": "a6d11dcd-d3e7-424a-b8c4-90bf28b5785d"
+          }
+        ]
+      }
+    }
+  }
+}
+
+ ```
+
 ## API Examples
 The following will use the Python client library for various things. This can be found in `bseept-client-library-example.py`
 
