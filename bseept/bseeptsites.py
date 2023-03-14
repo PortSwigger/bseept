@@ -415,6 +415,76 @@ def updatesitescanconfiguration(APIURL, APIKEY, site_id, scanconfigids, doprint=
     if (output is True):
         return result
 
+#
+# Update site scope URLs
+#
+def updatesitescope(APIURL, APIKEY, site_id, included, excluded, protocoloptions, doprint=True, output=False):
+
+    if(len(str(excluded)) > 4):
+        query = '''
+        mutation UpdateSiteScope($siteid: ID!, $included: [String!]!, $excluded: [String!], $protocolops: ScopeProtocolOptions){
+    
+            update_site_scope(
+                input: {
+                    site_id : $siteid
+                    included_urls: $included
+                    excluded_urls: $excluded
+                    protocol_options: $protocolops
+                } 
+            ) 
+    
+            {
+                scope {
+                    included_urls
+                    excluded_urls
+                    protocol_options
+               }
+            }
+        }'''
+
+        variables = {
+            "siteid": site_id,
+            "included": included,
+            "excluded": excluded,
+            "protocolops": protocoloptions
+        }
+    else:
+        query = '''
+        mutation UpdateSiteScope($siteid: ID!, $included: [String!]!, $protocolops: ScopeProtocolOptions){
+
+            update_site_scope(
+                input: {
+                    site_id : $siteid
+                    included_urls: $included
+                    protocol_options: $protocolops
+                } 
+            ) 
+
+            {
+                scope {
+                    included_urls
+                    excluded_urls
+                    protocol_options
+               }
+            }
+        }'''
+
+        variables = {
+            "siteid": site_id,
+            "included": included,
+            "excluded": excluded,
+            "protocolops": protocoloptions
+        }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
+
+
+
 
 
 

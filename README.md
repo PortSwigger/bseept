@@ -67,9 +67,10 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Move agent pool via `moveagentpool`
 - [x] Assign site to agent pool via `assignsitetogentpool`
 - [x] Update site scan config via `updatesitescanconfig`
-- 
+- [x] Update site scope via `updatesitescope`
+
 ### To Do
-- [ ] Update site scope via `updatesitescope`
+- [ ] write test cases
 
 ## Authentication Configuration
 

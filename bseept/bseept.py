@@ -131,6 +131,10 @@ def main():
     parser_updatesitescanconfig.add_argument('--scanconfigids', help='new scan configuration IDs to use', required=True)
 
     parser_updatesitescope = subparsers.add_parser('updatesitescope', help='Update a site scope')
+    parser_updatesitescope.add_argument('--siteid', help='site ID', required=True)
+    parser_updatesitescope.add_argument('--includedurls', nargs='+', help='included site URLs', required=True)
+    parser_updatesitescope.add_argument('--excludedurls', nargs='+', help='excluded site URLs', required=True)
+    parser_updatesitescope.add_argument('--protocoloptions', help='which protocols are used when scanning the sites URLs',default='USE_SPECIFIED_PROTOCOLS', choices=['USE_SPECIFIED_PROTOCOLS', 'USE_HTTP_AND_HTTPS'])
 
     parser_updatesiteextensions = subparsers.add_parser('updatesiteextensions', help='Update a site\'s extensions')
     parser_updatesiteextensions.add_argument('--siteid', help='site ID', required=True)
@@ -422,6 +426,10 @@ def main():
 
     if(args.command =="renamesite"):                           
         bseeptsites.deletesite(apiurl, apikey, args.siteid, args.newname)
+
+    if(args.command=="updatesitescope"):
+        bseeptsites.updatesitescope(apiurl,apikey,args.siteid,args.includedurls,args.excludedurls,args.protocoloptions)
+
     #
     # Scans / Schedules
     if(args.command =="addscanschedule"):
