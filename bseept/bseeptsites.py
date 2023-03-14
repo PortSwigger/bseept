@@ -338,4 +338,44 @@ def updatesiteextensions(APIURL, APIKEY, site_id, ids, doprint=True, output=Fals
         return result
 
 
+#
+# Assign sites to an agent pool
+#
+def assignsitestoagentpool(APIURL, APIKEY, site_ids, agentpoolid, doprint=True, output=False):
+
+    query = '''
+    mutation AssignSitesToAgentPool($siteids: [ID!], $agentpoolid: ID!) {
+
+        assign_sites_to_agent_pool(
+            input: {
+                site_ids : $siteids
+                agent_pool_id: $agentpoolid
+            } 
+        ) 
+
+        {
+            sites {
+                id
+                agent_pool{
+                    id
+                    name
+                    description
+                }
+           }
+        }
+    }'''
+
+    variables = {
+        "siteids": site_ids,
+        "agentpoolid": agentpoolid
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
+
+
 

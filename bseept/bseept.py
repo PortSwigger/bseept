@@ -287,7 +287,9 @@ def main():
     parser_deleteagentpool = subparsers.add_parser('deleteagentpool', help='Delete an agent pool')
     parser_deleteagentpool.add_argument('--poolid', help='ID of the agent pool', required=True)
 
-    parser_assignsitetogentpool = subparsers.add_parser('assignsitetogentpool', help='Assign sites to an agent pool')
+    parser_assignsitestogentpool = subparsers.add_parser('assignsitestoagentpool', help='Assign sites to an agent pool')
+    parser_assignsitestogentpool.add_argument('--siteids', help='site IDs to assign to pool', required=True)
+    parser_assignsitestogentpool.add_argument('--agentpoolid', help='agent pool ID returned from createagentpool or --getagentpools', required=True)
 
     #
     # Folders
@@ -431,6 +433,9 @@ def main():
 
     if(args.command == "updatesiteextensions"):
         bseeptsites.updatesiteextensions(apiurl, apikey, args.siteid, args.extensionids)
+
+    if(args.command == "assignsitestoagentpool"):
+        bseeptsites.assignsitestoagentpool(apiurl,apikey,args.siteids, args.agentpoolid)
 
     #
     # Folders
