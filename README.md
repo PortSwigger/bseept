@@ -572,7 +572,7 @@ bseept % python3 bseept.py --getscanissues 123 | jq ".[].scan.issues[].issue_typ
 
 ### Get specific issue details
 
-Get all the fields for an issue
+Get all the fields for an issue including all the evidence
 
 ```commandline
 bseept % python3 bseept.py getissuedetails --scanid 123 --issueserial 5601616512020228096 | jq
@@ -583,7 +583,7 @@ bseept % python3 bseept.py getissuedetails --scanid 123 --issueserial 5601616512
       "display_confidence": null,
       "serial_number": "5601616512020228096",
       "severity": "high",
-      "description_html": "It is possible to induce the application to perform server-side HTTP and HTTPS requests to arbitrary domains.<br><br>The payload <b>http://s0t5stlr0i5p270b2o0hxzl1ksqlee24qzdq1f.oastify.com/</b> was submitted in the <b>Referer</b> HTTP header.<br><br>The application performed an HTTP request to the specified domain.",
+      "description_html": "It is possible to induce the application to perform server-side HTTP and HTTPS requests to arbitrary domains.<br><br>The payload <b>http://REDACTED.oastify.com/</b> was submitted in the <b>Referer</b> HTTP header.<br><br>The application performed an HTTP request to the specified domain.",
       "remediation_html": null,
       "path": "/catalog",
       "origin": "https://ginandjuice.shop",
