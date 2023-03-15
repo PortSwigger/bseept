@@ -8,7 +8,11 @@ All output returned is in JSON format which can be parsed and pretified by pipin
 
 ## Features
 
-This tool is currently work in progress. The following lists track the implemented versus to do features.
+The following lists track the implemented versus to do features.
+
+Please raise any bugs / feature requests as issues so they can be resolved.
+
+E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net`
 
 ### Implemented
 
@@ -70,8 +74,10 @@ This tool is currently work in progress. The following lists track the implement
 - [x] Update site scope via `updatesitescope`
 
 ### To Do
-- [ ] write test cases
-
+- [ ] Update false positive status for an issue via `updatefalsepositive`
+- [ ] Higher-level concept/command - extract scan issue to JSON via `extractscanissuetojson`
+- [ ] Write test case suite
+- 
 ## Authentication Configuration
 
 You can configure authentication with the API key to work in one of two ways. Either via environment variables (i.e. setting the URL and/or API via specific variables) or by supplying the command line.
