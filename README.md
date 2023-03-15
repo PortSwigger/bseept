@@ -98,7 +98,7 @@ py bseept.py --url https://my.bsee.server/ --apikey MYAPIKEY --getsites
 
 The following is the help output from the tool
 
-```
+```commandline
 # py bseept.py --help
 usage: bseept [-h] [-u URL] [--apikey APIKEY] [--getsites] [--getfolders] [--getsitetree] [--getscans] [--getscanconfigs] [--getscanissues GETSCANISSUES] [--getscanreport GETSCANREPORT] [--getscanreportxml GETSCANREPORTXML] [--getschedule] [--getagents] [--getagentpools]
               [--getunauthorizedagents] [--getextensions]
