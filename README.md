@@ -72,9 +72,9 @@ E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net
 - [x] Assign site to agent pool via `assignsitetogentpool`
 - [x] Update site scan config via `updatesitescanconfig`
 - [x] Update site scope via `updatesitescope`
+- [x] Update false positive status for an issue via `updatefalsepositive`
 
 ### To Do
-- [ ] Update false positive status for an issue via `updatefalsepositive`
 - [ ] Higher-level concept/command - extract scan issue to JSON via `extractscanissuetojson`
 - [ ] Write test case suite
 

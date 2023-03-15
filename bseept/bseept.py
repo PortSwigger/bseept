@@ -319,6 +319,15 @@ def main():
     # Issues
     #
     parser_updatefalsepositive = subparsers.add_parser('updatefalsepositive', help='Update the false positive for an issue')
+    parser_updatefalsepositive.add_argument('--scanid', help='scan ID', required=True)
+    parser_updatefalsepositive.add_argument('--issueserial', help='issue serial number', required=True)
+    parser_updatefalsepositive.add_argument('--falsepositive', dest='falsepos', action='store_true', help='is a false positive (default)')
+    parser_updatefalsepositive.add_argument('--notfalsepositive', dest='falsepos', action='store_false', help='is not a false positive')
+    parser_updatefalsepositive.set_defaults(falsepos=True)
+    parser_updatefalsepositive.add_argument('--propigationmode',
+                                        help='propigation model for issues marked this way',
+                                        default='issue_type_only',
+                                        choices=['issue_type_only', 'issue_type_and_url', 'issue_type_and_current_scan'])
 
 ###################################
 # now parse
@@ -595,6 +604,11 @@ def main():
 
     if(args.command == "deletesiteemailreceipient"):
         bseeptemailrecipients.deletesiteemailreceipient(apiurl, apikey, args.emailid)
+
+    #
+    # Issues
+    if (args.command == "updatefalsepositive"):
+        bseeptissues.updatefalsepositive(apiurl,apikey,args.scanid,args.issueserial,args.falsepos,args.propigationmode)
 
 
 # Entry point
