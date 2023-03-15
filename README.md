@@ -570,6 +570,23 @@ bseept % python3 bseept.py --getscanissues 123 | jq ".[].scan.issues[].issue_typ
    1 "XML external entity injection"
 ```
 
+### Get specific issue details
+```commandline
+bseept % python3 bseept.py getissuedetails --scanid 123 --issueserial 5601616512020228096 | jq
+{
+  "data": {
+    "issue": {
+      "confidence": "certain",
+      "display_confidence": null,
+      "serial_number": "5601616512020228096",
+      "severity": "high",
+      "description_html": "It is possible to induce the application to perform server-side HTTP and HTTPS requests to arbitrary domains.<br><br>The payload <b>http://s0t5stlr0i5p270b2o0hxzl1ksqlee24qzdq1f.oastify.com/</b> was submitted in the <b>Referer</b> HTTP header.<br><br>The application performed an HTTP request to the specified domain.",
+      "remediation_html": null,
+      "path": "/catalog",
+      "origin": "https://ginandjuice.shop",
+      ...
+}
+```
 ## API Examples
 The following will use the Python client library for various things. This can be found in `bseept-client-library-example.py`
 
