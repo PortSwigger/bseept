@@ -77,7 +77,7 @@ E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net
 - [ ] Update false positive status for an issue via `updatefalsepositive`
 - [ ] Higher-level concept/command - extract scan issue to JSON via `extractscanissuetojson`
 - [ ] Write test case suite
-- 
+
 ## Authentication Configuration
 
 You can configure authentication with the API key to work in one of two ways. Either via environment variables (i.e. setting the URL and/or API via specific variables) or by supplying the command line.
