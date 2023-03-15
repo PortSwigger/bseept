@@ -343,7 +343,7 @@ The following are example uses cases.
 
  ```
 
-### Get scan details and then get scan results
+### Get scan details and then get scan results in various formats and outputs
 
 First get the scan details
 ```commandline
@@ -497,6 +497,52 @@ bseept % python3 bseept.py --getscanissues 123 | jq ".[].scan.issues[].issue_typ
 "Input returned in response (reflected)"
 "Client-side prototype pollution"
 "Request URL override"
+```
+
+Then extract into CSV lines
+
+```commandline
+bseept % python3 bseept.py --getscanissues 123 | jq '.[].scan.issues[] | "\(.issue_type.name),\(.origin),\(.path)"'
+"External service interaction (HTTP),https://ginandjuice.shop,/catalog"
+"External service interaction (HTTP),https://ginandjuice.shop,/catalog/filter"
+"External service interaction (HTTP),https://ginandjuice.shop,/catalog/product"
+"HTTP response header injection,https://ginandjuice.shop,/catalog/product-search-results/5"
+"External service interaction (HTTP),https://ginandjuice.shop,/catalog/product/stock"
+"Cross-site scripting (reflected),https://ginandjuice.shop,/catalog/search/3"
+"Cross-site scripting (reflected),https://ginandjuice.shop,/catalog/search/4"
+"SQL injection,https://ginandjuice.shop,/catalog/filter"
+"XML external entity injection,https://ginandjuice.shop,/catalog/product/stock"
+"Cross-site scripting (reflected),https://ginandjuice.shop,/catalog/search/2"
+"Client-side template injection,https://ginandjuice.shop,/catalog/search/4"
+"Strict transport security not enforced,https://ginandjuice.shop,/"
+"Password field with autocomplete enabled,https://ginandjuice.shop,/login"
+"Iterable input,https://ginandjuice.shop,/post"
+"Iterable input,https://ginandjuice.shop,/post"
+"Iterable input,https://ginandjuice.shop,/post"
+"Iterable input,https://ginandjuice.shop,/post"
+"Iterable input,https://ginandjuice.shop,/post"
+"Open redirection (DOM-based),https://ginandjuice.shop,/catalog/product"
+"Open redirection (DOM-based),https://ginandjuice.shop,/catalog/product"
+"Vulnerable JavaScript dependency,https://ginandjuice.shop,/resources/js/angular_1-7-7.js"
+"Cookie without HttpOnly flag set,https://ginandjuice.shop,/"
+"Cookie without HttpOnly flag set,https://ginandjuice.shop,/"
+"Input returned in response (reflected),https://ginandjuice.shop,/"
+"Cacheable HTTPS response,https://ginandjuice.shop,/"
+"TLS certificate,https://ginandjuice.shop,/"
+"TLS cookie without secure flag set,https://ginandjuice.shop,/"
+"External service interaction (DNS),https://ginandjuice.shop,/catalog"
+"External service interaction (DNS),https://ginandjuice.shop,/catalog/filter"
+"Input returned in response (reflected),https://ginandjuice.shop,/catalog/filter"
+"External service interaction (DNS),https://ginandjuice.shop,/catalog/product"
+"Input returned in response (reflected),https://ginandjuice.shop,/catalog/product-search-results/1"
+"Cross-site scripting (reflected),https://ginandjuice.shop,/catalog/product-search-results/1"
+"Input returned in response (reflected),https://ginandjuice.shop,/catalog/product-search-results/5"
+"External service interaction (DNS),https://ginandjuice.shop,/catalog/product/stock"
+"Input returned in response (reflected),https://ginandjuice.shop,/catalog/search/2"
+"Input returned in response (reflected),https://ginandjuice.shop,/catalog/search/3"
+"Input returned in response (reflected),https://ginandjuice.shop,/catalog/search/4"
+"Client-side prototype pollution,https://ginandjuice.shop,/"
+"Request URL override,https://ginandjuice.shop,/"
 ```
 
 then do the same, sort and count
