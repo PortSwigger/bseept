@@ -73,9 +73,9 @@ E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net
 - [x] Update site scan config via `updatesitescanconfig`
 - [x] Update site scope via `updatesitescope`
 - [x] Update false positive status for an issue via `updatefalsepositive`
+- [x] Higher-level concept/command - extract scan issue to JSON via `getissuedetails`
 
 ### To Do
-- [ ] Higher-level concept/command - extract scan issue to JSON via `extractscanissuetojson`
 - [ ] Write test case suite
 
 ## Authentication Configuration

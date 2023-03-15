@@ -329,6 +329,10 @@ def main():
                                         default='issue_type_only',
                                         choices=['issue_type_only', 'issue_type_and_url', 'issue_type_and_current_scan'])
 
+    parser_getissuedetails = subparsers.add_parser('getissuedetails', help='Get details for a specific issue returns by --getscanissues')
+    parser_getissuedetails.add_argument('--scanid', help='scan ID', required=True)
+    parser_getissuedetails.add_argument('--issueserial', help='issue serial number', required=True)
+
 ###################################
 # now parse
 ###################################
@@ -610,6 +614,8 @@ def main():
     if (args.command == "updatefalsepositive"):
         bseeptissues.updatefalsepositive(apiurl,apikey,args.scanid,args.issueserial,args.falsepos,args.propigationmode)
 
+    if(args.command == "getissuedetails"):
+        bseeptissues.getissuedetails(apiurl,apikey,args.scanid,args.issueserial)
 
 # Entry point
 if __name__ == '__main__':
