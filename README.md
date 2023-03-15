@@ -571,6 +571,9 @@ bseept % python3 bseept.py --getscanissues 123 | jq ".[].scan.issues[].issue_typ
 ```
 
 ### Get specific issue details
+
+Get all the fields for an issue
+
 ```commandline
 bseept % python3 bseept.py getissuedetails --scanid 123 --issueserial 5601616512020228096 | jq
 {
