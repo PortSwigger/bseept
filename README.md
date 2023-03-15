@@ -572,7 +572,7 @@ bseept % python3 bseept.py --getscanissues 123 | jq ".[].scan.issues[].issue_typ
 
 ### Get specific issue details
 
-Get all the fields for an issue including all the evidence
+Get all the fields for an issue including all the evidence which ecompasses all the requests and respponses etc.
 
 ```commandline
 bseept % python3 bseept.py getissuedetails --scanid 123 --issueserial 5601616512020228096 | jq
@@ -587,6 +587,16 @@ bseept % python3 bseept.py getissuedetails --scanid 123 --issueserial 5601616512
       "remediation_html": null,
       "path": "/catalog",
       "origin": "https://ginandjuice.shop",
+      "remediation_html": null,
+      "path": "/catalog",
+      "origin": "https://ginandjuice.shop",
+      "evidence": [
+        {
+          "request_index": 0,
+          "request_count": 1,
+          "request_segments": [
+            {
+
       ...
 }
 ```
