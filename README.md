@@ -99,16 +99,17 @@ py bseept.py --url https://my.bsee.server/ --apikey MYAPIKEY --getsites
 The following is the help output from the tool
 
 ```commandline
-# py bseept.py --help
-usage: bseept [-h] [-u URL] [--apikey APIKEY] [--getsites] [--getfolders] [--getsitetree] [--getscans] [--getscanconfigs] [--getscanissues GETSCANISSUES] [--getscanreport GETSCANREPORT] [--getscanreportxml GETSCANREPORTXML] [--getschedule] [--getagents] [--getagentpools]
-              [--getunauthorizedagents] [--getextensions]
-              {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogincredentials,updatesiterecordedlogincredentials,deletesiterecordedlogincredentials,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,enabledisableagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitetogentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive}
+# bseept.py --help                                                             
+usage: bseept [-h] [-u URL] [--apikey APIKEY] [--getsites] [--getfolders] [--getsitetree] [--getscans] [--getscanconfigs]
+              [--getscanissues GETSCANISSUES] [--getscanreport GETSCANREPORT] [--getscanreportxml GETSCANREPORTXML] [--getschedule]
+              [--getagents] [--getagentpools] [--getunauthorizedagents] [--getextensions]
+              {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogin,deletesiterecordedlogin,createsiteemailreceipient,updatesiteemailreceipient,deletesiteemailreceipient,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitestoagentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive,getissuedetails}
               ...
 
 Burp Suite Enterprise Edition Power Tools
 
 positional arguments:
-  {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogincredentials,updatesiterecordedlogincredentials,deletesiterecordedlogincredentials,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,enabledisableagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitetogentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive}
+  {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogin,deletesiterecordedlogin,createsiteemailreceipient,updatesiteemailreceipient,deletesiteemailreceipient,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitestoagentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive,getissuedetails}
                         modify commands
     createsite          Create a site
     deletesite          Delete a site
@@ -118,19 +119,23 @@ positional arguments:
                         Update a site scan configuration
     updatesitescope     Update a site scope
     updatesiteextensions
-                        Update a site extensions
+                        Update a site's extensions
     createsitelogincredentials
                         Create a sites login credentials
     updatesitelogincredentials
                         Update a sites login credentials
     deletesitelogincredentials
                         Delete a sites login credentials
-    createsiterecordedlogincredentials
+    createsiterecordedlogin
                         Create a sites recorded login credentials
-    updatesiterecordedlogincredentials
-                        Update a sites recorded login credentials
-    deletesiterecordedlogincredentials
+    deletesiterecordedlogin
                         Delete a sites recorded login credentials
+    createsiteemailreceipient
+                        Create a site email receipient for reporting
+    updatesiteemailreceipient
+                        Update a site email receipient for reporting
+    deletesiteemailreceipient
+                        Delete a site email receipient for reporting
     addscanschedule     Add a scan schedule
     updatescanschedule  Update a scan schedule
     deletescanschedule  Delete a scan
@@ -138,7 +143,7 @@ positional arguments:
     updatescanconfig    Update a scan configuration
     deletescanconfig    Delete a scan configuration
     uploadbapp          Upload a BApp
-    getbappdetails      Get BApp details without adding it to thelist of usable extensions
+    getbappdetails      Get BApp details without adding it to the list of usable extensions - this uploads and parses the BApp
     uploadextension     Upload a custom extension
     updateextensionname
                         Update a custom extension name
@@ -148,7 +153,6 @@ positional arguments:
     deleteextension     Delete a custom extension or BApp
     authorizeagent      Authorize a new agent to be able to run scans
     deauthorizeagent    Deauthorize an existing agent from running scans
-    enabledisableagent  Enable or disable an existing agent
     renameagent         Rename an existing agent
     enableagent         Enable an existing agent
     disableagent        Disable an existing agent
@@ -158,7 +162,7 @@ positional arguments:
     updateagentpool     Update an agent pool
     moveagentpool       Move an agent pool
     deleteagentpool     Delete an agent pool
-    assignsitetogentpool
+    assignsitestoagentpool
                         Assign sites to an agent pool
     createfolder        Create a folder
     deletefolder        Delete a folder
@@ -166,6 +170,7 @@ positional arguments:
     movefolder          Move a folder
     updatefalsepositive
                         Update the false positive for an issue
+    getissuedetails     Get details for a specific issue returns by --getscanissues
 
 optional arguments:
   -h, --help            show this help message and exit
