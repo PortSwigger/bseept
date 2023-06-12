@@ -136,6 +136,13 @@ def main():
     parser_updatesitescope.add_argument('--excludedurls', nargs='+', help='excluded site URLs', required=True)
     parser_updatesitescope.add_argument('--protocoloptions', help='which protocols are used when scanning the sites URLs',default='USE_SPECIFIED_PROTOCOLS', choices=['USE_SPECIFIED_PROTOCOLS', 'USE_HTTP_AND_HTTPS'])
 
+    parser_updatesitescopev2 = subparsers.add_parser('updatesitescopev2', help='Update a site scope v2')
+    parser_updatesitescopev2.add_argument('--siteid', help='site ID', required=True)
+    parser_updatesitescopev2.add_argument('--inscopeprefix', nargs='+', help='list of URLs allowed to be scanned', required=True)
+    parser_updatesitescopev2.add_argument('--outscopeprefix', nargs='+', help='list of URL which will be skipped', required=True)
+    parser_updatesitescopev2.add_argument('--protocoloptions', help='which protocols are used when scanning the sites URLs', default='USE_SPECIFIED_PROTOCOLS', choices=['USE_SPECIFIED_PROTOCOLS', 'USE_HTTP_AND_HTTPS'])
+    parser_updatesitescopev2.add_argument('--starturls', nargs='+', help='the URLs where the the scan begins from', required=True)
+
     parser_updatesiteextensions = subparsers.add_parser('updatesiteextensions', help='Update a site\'s extensions')
     parser_updatesiteextensions.add_argument('--siteid', help='site ID', required=True)
     parser_updatesiteextensions.add_argument('--extensionids', nargs='+', help='extension IDs to use', required=True)
@@ -442,6 +449,9 @@ def main():
 
     if(args.command=="updatesitescope"):
         bseeptsites.updatesitescope(apiurl,apikey,args.siteid,args.includedurls,args.excludedurls,args.protocoloptions)
+
+    if (args.command == "updatesitescopev2"):
+        bseeptsites.updatesitescopev2(apiurl, apikey, args.siteid, args.inscopeprefix, args.outscopeprefix, args.protocoloptions, args.starturls)
 
     #
     # Scans / Schedules
