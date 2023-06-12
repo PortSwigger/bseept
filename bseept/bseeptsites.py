@@ -484,6 +484,48 @@ def updatesitescope(APIURL, APIKEY, site_id, included, excluded, protocoloptions
         return result
 
 
+#
+# Update site scope URLs using the v2 mutation
+#
+def updatesitescopev2(APIURL, APIKEY, site_id, inscopeprefix, outscopeprefix, protocoloptions, starturls, doprint=True, output=False):
+
+    query = '''
+    mutation UpdateSiteScope($siteid: ID!, $in_scope_url_prefixes: [String!]!, $out_of_scope_url_prefixes: [String!], $protocolops: ScopeProtocolOptions, $start_urls [String!]){
+
+        update_site_scope_v2(
+            input: {
+                site_id : $siteid
+                in_scope_url_prefixes: $inscopeprefix
+                out_of_scope_url_prefixes: $outscopeprefix
+                protocol_options: $protocolops
+                start_urls: $starturls
+            } 
+        ) 
+
+        {
+            scope_v2 {
+                in_scope_url_prefixes
+                out_of_scope_url_prefixes
+                protocol_options
+                start_urls
+            }
+        }
+    }'''
+
+    variables = {
+        "siteid": site_id,
+        "inscopeprefix": inscopeprefix,
+        "outscopeprefix": outscopeprefix,
+        "protocolops": protocoloptions,
+        "starturls": starturls
+    }
+
+    result = bseeptgraphql.dographql(APIURL, APIKEY, query, variables)
+
+    if (doprint is True):
+        print(json.dumps(result))
+    if (output is True):
+        return result
 
 
 
