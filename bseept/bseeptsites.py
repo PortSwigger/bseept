@@ -490,25 +490,32 @@ def updatesitescope(APIURL, APIKEY, site_id, included, excluded, protocoloptions
 def updatesitescopev2(APIURL, APIKEY, site_id, inscopeprefix, outscopeprefix, protocoloptions, starturls, doprint=True, output=False):
 
     query = '''
-    mutation UpdateSiteScopev2($siteid: ID!, $in_scope_url_prefixes: [String!]!, $out_of_scope_url_prefixes: [String!]!, $protocolops: ScopeProtocolOptions, $start_urls: [String!]!){
+    mutation UpdateSiteScopev2($siteid: ID!, $inscopeprefix: [String!]!, $outscopeprefix: [String!]!, $protocolops: ScopeProtocolOptions!, $starturls: [String!]!){
 
         update_site_scope_v2(
             input: {
-                site_id : $siteid
-                in_scope_url_prefixes: $inscopeprefix
-                out_of_scope_url_prefixes: $outscopeprefix
-                protocol_options: $protocolops
-                start_urls: $starturls
+                site_id : $siteid 
+                scope_v2: {
+                    in_scope_url_prefixes: $inscopeprefix
+                    out_of_scope_url_prefixes: $outscopeprefix
+                    protocol_options: $protocolops
+                    start_urls: $starturls
+                }
             } 
         ) 
 
         {
-            scope_v2 {
-                in_scope_url_prefixes
-                out_of_scope_url_prefixes
-                protocol_options
-                start_urls
+            site{
+                id
+                name
+                scope_v2 {
+                    in_scope_url_prefixes
+                    out_of_scope_url_prefixes
+                    protocol_options
+                    start_urls
+                }
             }
+
         }
     }'''
 
