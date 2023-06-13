@@ -103,13 +103,13 @@ The following is the help output from the tool
 usage: bseept [-h] [-u URL] [--apikey APIKEY] [--getsites] [--getfolders] [--getsitetree] [--getscans] [--getscanconfigs]
               [--getscanissues GETSCANISSUES] [--getscanreport GETSCANREPORT] [--getscanreportxml GETSCANREPORTXML] [--getschedule]
               [--getagents] [--getagentpools] [--getunauthorizedagents] [--getextensions]
-              {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogin,deletesiterecordedlogin,createsiteemailreceipient,updatesiteemailreceipient,deletesiteemailreceipient,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitestoagentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive,getissuedetails}
+              {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesitescopev2,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogin,deletesiterecordedlogin,createsiteemailreceipient,updatesiteemailreceipient,deletesiteemailreceipient,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitestoagentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive,getissuedetails}
               ...
 
 Burp Suite Enterprise Edition Power Tools
 
 positional arguments:
-  {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogin,deletesiterecordedlogin,createsiteemailreceipient,updatesiteemailreceipient,deletesiteemailreceipient,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitestoagentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive,getissuedetails}
+  {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesitescopev2,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogin,deletesiterecordedlogin,createsiteemailreceipient,updatesiteemailreceipient,deletesiteemailreceipient,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitestoagentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive,getissuedetails}
                         modify commands
     createsite          Create a site
     deletesite          Delete a site
@@ -118,6 +118,7 @@ positional arguments:
     updatesitescanconfig
                         Update a site scan configuration
     updatesitescope     Update a site scope
+    updatesitescopev2   Update a site scope v2
     updatesiteextensions
                         Update a site's extensions
     createsitelogincredentials
@@ -305,7 +306,7 @@ The following are example uses cases.
 
 ### Update a sites scope and parse the response through jq
  ```commandline
- > py bseept.py --url updatesitescope --siteid 55 --includedurls https://ginandjuice.shop https://www.binaryfirefly.com --excludedurls "https://portswigger.net" | jq 
+ > py bseept.py updatesitescope --siteid 55 --includedurls https://ginandjuice.shop https://www.binaryfirefly.com --excludedurls "https://portswigger.net" | jq 
 {
   "data": {
     "update_site_scope": {
@@ -323,6 +324,34 @@ The following are example uses cases.
   }
 }
  ```
+
+### Update a sites scope using v2 API and parse the response through jq
+```
+>py bseept.py --siteid 30 --inscopeprefix https://ginandjuice.shop https://www.binaryfirefly.com --outscopeprefix "https://portswigger.net" --starturls "https://ginandjuice.shop" | jq
+{
+  "data": {
+    "update_site_scope_v2": {
+      "site": {
+        "id": "30",
+        "name": "'kdkd2342j2'",
+        "scope_v2": {
+          "in_scope_url_prefixes": [
+            "https://ginandjuice.shop",
+            "https://www.binaryfirefly.com"
+          ],
+          "out_of_scope_url_prefixes": [
+            "https://portswigger.net"
+          ],
+          "protocol_options": "USE_SPECIFIED_PROTOCOLS",
+          "start_urls": [
+            "https://ginandjuice.shop"
+          ]
+        }
+      }
+    }
+  }
+}
+```
 
 ### Update a sites scan configuration IDs to use and parse the response through jq
  ```commandline
