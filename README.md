@@ -77,6 +77,16 @@ E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net
 - [x] Update site scope via v2 API `updatesitescopev2`
 
 ### To Do
+- [ ] Create site request cookie via `create_site_request_cookie`
+- [ ] Update site request cookie via `update_site_request_cookie`
+- [ ] Delete site request cookie via `delete_site_request_cookie`
+- [ ] Create site request header via `create_site_request_header`
+- [ ] Update site request header via `update_site_request_header`
+- [ ] Delete site request header via `delete_site_request_header`
+- [ ] Slack app configuration via `slack_app_configuration`
+- [ ] Update Slack settings via via `update_slack_settings`
+- [ ] Update site Slack channels via `update_site_slack_channels`
+- [ ] Update folder slack channels via `update_folder_slack_channels`
 - [ ] Write test case suite
 
 ## Authentication Configuration
