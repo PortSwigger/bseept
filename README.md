@@ -74,7 +74,7 @@ E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net
 - [x] Update site scope via `updatesitescope`
 - [x] Update false positive status for an issue via `updatefalsepositive`
 - [x] Higher-level concept/command - extract scan issue to JSON via `getissuedetails`
-- [x] Update site scope via v2 API `updatesitescope`
+- [x] Update site scope via v2 API `updatesitescopev2`
 
 ### To Do
 - [ ] Write test case suite
