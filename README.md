@@ -75,6 +75,7 @@ E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net
 - [x] Update false positive status for an issue via `updatefalsepositive`
 - [x] Higher-level concept/command - extract scan issue to JSON via `getissuedetails`
 - [x] Update site scope via v2 API `updatesitescopev2`
+- [x] Get the BSEE current schema from the server via `--getbseeschema` (secrets beyond the documentation)
 
 ### To Do
 - [ ] Create site request cookie via `create_site_request_cookie`
@@ -205,6 +206,7 @@ optional arguments:
   --getunauthorizedagents
                         Get the curretly unauthorized agents
   --getextensions       Extensions installed
+  --getbseeschema       Current BSEE schema
 
 with 🧡 from PortSwigger
 ```

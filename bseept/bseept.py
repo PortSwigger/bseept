@@ -44,6 +44,7 @@ import bseeptscanconfigs
 import bseeptscans
 import bseeptscanschedules
 import bseeptsites
+import bseeptschema
 
 import urllib3
 
@@ -97,6 +98,9 @@ def main():
 
     # get extensions
     parser.add_argument('--getextensions', help='Extensions installed', action='store_true')
+
+    # get current schema
+    parser.add_argument('--getbseeschema', help='Current BSEE schema', action='store_true')
 
     # ---------------------
     # mutations (set etc.) - these are implemented as subcommands 
@@ -431,6 +435,9 @@ def main():
 
     if(args.getunauthorizedagents is True):
         bseeptagents.getunauthorisedagents(apiurl,apikey)
+
+    if(args.getbseeschema is True):
+        bseeptschema.getbseeschema(apiurl,apikey)
 
     #
     # GraphQL Mutations i.e. write operations
