@@ -74,6 +74,7 @@ E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net
 - [x] Update site scope via `updatesitescope`
 - [x] Update false positive status for an issue via `updatefalsepositive`
 - [x] Higher-level concept/command - extract scan issue to JSON via `getissuedetails`
+- [x] Update site scope via v2 API `updatesitescope`
 
 ### To Do
 - [ ] Write test case suite
@@ -701,6 +702,100 @@ def main():
 if __name__ == '__main__':
     main()
 
+```
+
+# Getting the current schema from Burp Suite Enteprise Edition
+
+Issue the following request to the API endpoint at /graphql/v1 on a Burp Suite Enterprise Edition server
+```commandline
+fragment FullType on __Type {
+  kind
+  name
+  fields(includeDeprecated: true) {
+    name
+    args {
+      ...InputValue
+    }
+    type {
+      ...TypeRef
+    }
+    isDeprecated
+    deprecationReason
+  }
+  inputFields {
+    ...InputValue
+  }
+  interfaces {
+    ...TypeRef
+  }
+  enumValues(includeDeprecated: true) {
+    name
+    isDeprecated
+    deprecationReason
+  }
+  possibleTypes {
+    ...TypeRef
+  }
+}
+fragment InputValue on __InputValue {
+  name
+  type {
+    ...TypeRef
+  }
+  defaultValue
+}
+fragment TypeRef on __Type {
+  kind
+  name
+  ofType {
+    kind
+    name
+    ofType {
+      kind
+      name
+      ofType {
+        kind
+        name
+        ofType {
+          kind
+          name
+          ofType {
+            kind
+            name
+            ofType {
+              kind
+              name
+              ofType {
+                kind
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+query IntrospectionQuery {
+  __schema {
+    queryType {
+      name
+    }
+    mutationType {
+      name
+    }
+    types {
+      ...FullType
+    }
+    directives {
+      name
+      locations
+      args {
+        ...InputValue
+      }
+    }
+  }
+}
 ```
 
 
