@@ -4,15 +4,15 @@ A command line utility and Python client library for Burp Suite Enterprise Editi
 * https://portswigger.net/burp/documentation/enterprise/api-documentation/graphql-api
 * https://portswigger.net/burp/extensibility/enterprise/graphql-api/
 
-All output returned is in JSON format which can be parsed and pretified by piping through `jq` and similar
+All output returned is in JSON format which can be parsed and prettified by piping through `jq` and similar
+
+## Notice
+
+This tool is not actively maintained by PortSwigger. However, we welcome pull requests that contribute to this repository.
 
 ## Features
 
-The following lists track the implemented versus to do features.
-
-Please raise any bugs / feature requests as issues so they can be resolved.
-
-E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net`
+The following lists track the implemented versus to-do features. Please raise any bugs/feature requests as issues.
 
 ### Implemented
 
@@ -85,7 +85,7 @@ E-mail with any questions / feedback to `ollie.whitehouse at portswigger [.] net
 - [ ] Update site request header via `update_site_request_header`
 - [ ] Delete site request header via `delete_site_request_header`
 - [ ] Slack app configuration via `slack_app_configuration`
-- [ ] Update Slack settings via via `update_slack_settings`
+- [ ] Update Slack settings via `update_slack_settings`
 - [ ] Update site Slack channels via `update_site_slack_channels`
 - [ ] Update folder slack channels via `update_folder_slack_channels`
 - [ ] Write test case suite
@@ -214,7 +214,7 @@ with 🧡 from PortSwigger
 
 ## Examples
 
-The following are example uses cases.
+The following are example use cases.
 
 ### Creating a site
 ```commandline
@@ -716,7 +716,7 @@ if __name__ == '__main__':
 
 ```
 
-# Getting the current schema from Burp Suite Enteprise Edition
+# Getting the current schema from Burp Suite Enterprise Edition
 
 Use the following bseept command to get the current schema
 
