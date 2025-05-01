@@ -1,10 +1,10 @@
 ﻿#
-# Burp Suite Enterprise Edition Power Tools
+# Burp Suite DAST Power Tools
 #
 # Ollie Whitehouse - @ollieatnowhere
 #
 
-# Burp Suite Enterprise Edition GraphQL API documentation
+# Burp Suite DAST GraphQL API documentation
 # https://portswigger.net/burp/documentation/enterprise/api-documentation/graphql-api
 # https://portswigger.net/burp/extensibility/enterprise/graphql-api/
 
@@ -60,11 +60,11 @@ def printhelp():
 def main():
     parser = argparse.ArgumentParser(
                     prog = 'bseept',
-                    description = 'Burp Suite Enterprise Edition Power Tools',
+                    description = 'Burp Suite DAST Power Tools',
                     epilog = 'with 🧡 from PortSwigger')
 
-    parser.add_argument('-u', '--url', help='Burp Suite Enterprise Edition URL')
-    parser.add_argument('--apikey', help='Burp Suite Enterprise Edition API key')
+    parser.add_argument('-u', '--url', help='Burp Suite DAST URL')
+    parser.add_argument('--apikey', help='Burp Suite DAST API key')
     
 
     # ---------------------

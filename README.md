@@ -1,6 +1,6 @@
-# BSEEPT: Burp Suite Enterprise Edition Power Tools
+# BSEEPT: Burp Suite DAST Power Tools
 
-A command line utility and Python client library for Burp Suite Enterprise Edition's (https://portswigger.net/burp/enterprise) GraphQL API allowing you to query and configure.
+A command line utility and Python client library for Burp Suite DAST's (https://portswigger.net/burp/enterprise) GraphQL API allowing you to query and configure.
 * https://portswigger.net/burp/documentation/enterprise/api-documentation/graphql-api
 * https://portswigger.net/burp/extensibility/enterprise/graphql-api/
 
@@ -118,7 +118,7 @@ usage: bseept [-h] [-u URL] [--apikey APIKEY] [--getsites] [--getfolders] [--get
               {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesitescopev2,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogin,deletesiterecordedlogin,createsiteemailreceipient,updatesiteemailreceipient,deletesiteemailreceipient,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitestoagentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive,getissuedetails}
               ...
 
-Burp Suite Enterprise Edition Power Tools
+Burp Suite DAST Power Tools
 
 positional arguments:
   {createsite,deletesite,renamesite,movesite,updatesitescanconfig,updatesitescope,updatesitescopev2,updatesiteextensions,createsitelogincredentials,updatesitelogincredentials,deletesitelogincredentials,createsiterecordedlogin,deletesiterecordedlogin,createsiteemailreceipient,updatesiteemailreceipient,deletesiteemailreceipient,addscanschedule,updatescanschedule,deletescanschedule,createscanconfig,updatescanconfig,deletescanconfig,uploadbapp,getbappdetails,uploadextension,updateextensionname,updateextensiondescription,updateextensionjar,deleteextension,authorizeagent,deauthorizeagent,renameagent,enableagent,disableagent,updateagentmaxconcurrentscans,createagentpool,updateagentpool,moveagentpool,deleteagentpool,assignsitestoagentpool,createfolder,deletefolder,renamefolder,movefolder,updatefalsepositive,getissuedetails}
@@ -187,8 +187,8 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -u URL, --url URL     Burp Suite Enterprise Edition URL
-  --apikey APIKEY       Burp Suite Enterprise Edition API key
+  -u URL, --url URL     Burp Suite DAST URL
+  --apikey APIKEY       Burp Suite DAST API key
   --getsites            Configured all configured sites
   --getfolders          Configured folders in BSEE
   --getsitetree         Configured site tree in BSEE
@@ -652,7 +652,7 @@ The following will use the Python client library for various things. This can be
 
 ```python
 #
-# Burp Suite Enterprise Edition Power Tools
+# Burp Suite DAST Power Tools
 #
 # Ollie Whitehouse - @ollieatnowhere
 #
@@ -716,7 +716,7 @@ if __name__ == '__main__':
 
 ```
 
-# Getting the current schema from Burp Suite Enterprise Edition
+# Getting the current schema from Burp Suite DAST
 
 Use the following bseept command to get the current schema
 

@@ -1,5 +1,5 @@
 #
-# Burp Suite Enterprise Edition Power Tools
+# Burp Suite DAST Power Tools
 #
 # Ollie Whitehouse - @ollieatnowhere
 #
